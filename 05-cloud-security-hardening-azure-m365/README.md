@@ -1,54 +1,41 @@
-# Cloud Security Hardening for Azure and Microsoft 365
+# Azure & Microsoft 365 Cloud Security Hardening Assessment
 
-## Objective
+![Cloud Security](https://img.shields.io/badge/Cloud%20Security-Hardening-B22222)
+![Azure](https://img.shields.io/badge/Azure-Security-7A1212)
+![Microsoft 365](https://img.shields.io/badge/Microsoft%20365-Security-D94A4A)
+![Status](https://img.shields.io/badge/Status-Sample%20Assessment-111111)
 
-This project demonstrates how to assess and improve the security posture of a Microsoft cloud environment by reviewing identity, access, monitoring, and baseline hardening controls across Azure and Microsoft 365.
+## Overview
 
-The goal is to identify security gaps, prioritize risks, and provide practical remediation steps that help reduce exposure to cloud and identity-based threats.
+This project presents a sample cloud security hardening assessment focused on Azure and Microsoft 365 environments.
 
-## Scope
+The objective is to demonstrate how I evaluate cloud security posture, identify identity and access risks, review hardening gaps, and provide clear remediation guidance that helps organizations reduce exposure.
 
-The assessment includes:
+## Assessment Scope
 
-- Microsoft Entra ID security review
+The assessment covers the following areas:
+
+- Microsoft Entra ID security
 - Multi-Factor Authentication coverage
-- Conditional Access policy review
-- Privileged role assessment
+- Conditional Access policies
+- Privileged role assignments
 - Azure RBAC review
-- Microsoft Secure Score improvement opportunities
-- Microsoft Defender for Cloud posture review
-- Microsoft Purview audit validation
-- Logging and monitoring visibility
-- Tenant hardening recommendations
-
-## Lab / Assessment Context
-
-This project is based on a practical cloud security review scenario using Microsoft cloud security best practices.
-
-No real client data, tenant screenshots, production credentials, or confidential information are included.
-
-## Tools Used
-
-- Microsoft Entra ID
-- Microsoft Azure
-- Microsoft 365 Admin Center
-- Microsoft Secure Score
-- Microsoft Defender for Cloud
-- Microsoft Purview Audit
-- Conditional Access
-- Azure RBAC
-- Log Analytics
+- Microsoft Secure Score opportunities
+- Microsoft Defender for Cloud posture
+- Audit logging and monitoring visibility
+- Cloud hardening recommendations
 
 ## Methodology
 
-1. Review identity and access security controls.
-2. Validate MFA coverage for privileged and standard users.
-3. Assess Conditional Access policies.
-4. Review privileged role assignments and access exposure.
-5. Evaluate audit logging and monitoring visibility.
-6. Identify Secure Score and hardening improvement opportunities.
-7. Classify findings by severity and business impact.
-8. Create a prioritized remediation roadmap.
+The review follows a structured approach:
+
+1. Review identity and access controls.
+2. Validate MFA and Conditional Access coverage.
+3. Assess privileged roles and administrative exposure.
+4. Review audit logging and monitoring capabilities.
+5. Identify hardening gaps and improvement opportunities.
+6. Classify findings by severity and business impact.
+7. Build a prioritized remediation roadmap.
 
 ## Results Summary
 
@@ -64,20 +51,27 @@ No real client data, tenant screenshots, production credentials, or confidential
 
 ## Key Findings
 
-- MFA coverage required improvement for critical access scenarios.
+- MFA coverage required improvement for privileged and sensitive access scenarios.
 - Conditional Access policies were not fully aligned with risk-based access controls.
 - Privileged role assignments required review and reduction.
 - Audit logging and retention needed validation.
-- Secure Score recommendations provided improvement opportunities.
+- Microsoft Secure Score recommendations provided hardening opportunities.
 - Monitoring visibility could be strengthened for administrative and identity events.
 
-## Key Outcomes
+## Deliverables
 
-- Identified cloud and identity security gaps.
-- Prioritized findings based on risk and impact.
-- Created a remediation roadmap for Microsoft cloud hardening.
-- Demonstrated how Azure and Microsoft 365 environments can be reviewed using a structured security assessment approach.
-- Provided practical recommendations to improve cloud security posture.
+A client receiving this service would get:
+
+- Executive security summary
+- Cloud security findings by severity
+- Identity and access review
+- Microsoft 365 and Azure hardening recommendations
+- Remediation roadmap
+- Security posture improvement guidance
+
+## Visual Case Study
+
+Visual assets such as a project cover, executive one-pager, risk summary, and remediation roadmap can be found in the `visuals/` folder.
 
 ## Reports
 
@@ -87,10 +81,6 @@ No real client data, tenant screenshots, production credentials, or confidential
 - [Findings Summary](evidence/findings-summary.md)
 - [Remediation Plan](remediation/remediation-plan.md)
 
-## Evidence
-
-Evidence such as sample findings, anonymized screenshots, Secure Score examples, policy review notes, and diagrams can be added to the `evidence/` folder.
-
 ## Disclaimer
 
-This project is part of my cybersecurity portfolio. It does not include real client data, production tenant information, credentials, or confidential security configurations.
+This project is a sample assessment created for portfolio purposes. It does not include real client data, production tenant information, credentials, screenshots from private environments, or confidential security configurations.
