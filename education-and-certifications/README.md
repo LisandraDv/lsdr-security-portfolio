@@ -34,6 +34,7 @@ It includes certifications, completed courses, workshops, bootcamps, and practic
 | Cybersecurity Summer BootCamp | INCIBE / OEA | Cybersecurity | 2025 |
 | CyberOps Training | Cisco | Security Operations | 2025 |
 | Ethical Hacker Training | Cisco | Offensive Security | 2025 |
+| Digital Forensics Training | KISA | Digital Forensics / Incident Response | 2025 |
 | Cloud Security Learning Path | Microsoft Learn | Cloud Security | 2025 |
 | ITU Her CyberTracks | ITU | Incident Response / Mentorship | 2026 |
 
