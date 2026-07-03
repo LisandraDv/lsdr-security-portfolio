@@ -2,13 +2,13 @@
 
 ## Azure & Microsoft 365 Cloud Security Hardening Assessment
 
-This sample assessment demonstrates how an Azure and Microsoft 365 environment can be reviewed from a cloud security posture perspective.
+A sample cloud security hardening assessment was prepared to demonstrate how Azure and Microsoft 365 environments can be reviewed from a security posture perspective.
 
-The review focuses on identity security, access control, privileged roles, audit logging, monitoring visibility, and hardening opportunities.
+The assessment focused on identity security, access controls, privileged roles, audit logging, monitoring visibility, and cloud hardening opportunities.
 
 ## Main Objective
 
-The objective is to identify security gaps that could increase exposure to identity-based attacks, misconfigurations, weak access controls, or limited detection capabilities.
+The main objective of this review is to identify security gaps that could increase exposure to identity-based attacks, misconfigurations, weak access controls, or limited detection capabilities.
 
 ## Areas Reviewed
 
@@ -33,11 +33,13 @@ The objective is to identify security gaps that could increase exposure to ident
 
 ## Main Risks Identified
 
-The most relevant risks were related to incomplete MFA coverage, Conditional Access gaps, privileged access exposure, and limited audit visibility.
+The assessment identified several improvement areas related to authentication controls, Conditional Access coverage, privileged access exposure, audit logging, and hardening recommendations.
+
+The most important risks were related to incomplete MFA coverage, insufficient Conditional Access enforcement, and limited audit visibility.
 
 ## Business Impact
 
-If not remediated, these gaps may increase the risk of account compromise, unauthorized access, delayed incident investigation, and reduced visibility over administrative activity.
+If not addressed, these gaps may increase the risk of account compromise, unauthorized access, delayed incident investigation, and reduced visibility over administrative activity.
 
 ## Recommended Priority
 
