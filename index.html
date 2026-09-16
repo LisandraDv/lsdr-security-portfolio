@@ -8,6 +8,95 @@
   <title>Lisandra Duvernay — Cloud & Cybersecurity Portfolio</title>
   <link rel="stylesheet" href="./style.css?v=v3-1-20260916">
   <script src="./script.js?v=v3-1-20260916" defer></script>
+
+  <style>
+    /* ===== LISANDRA RETRO AVATAR HOVER ===== */
+    .avatar-hover-card {
+      position: relative;
+      overflow: visible !important;
+      isolation: isolate;
+    }
+
+    .avatar-hover-card .pixel-avatar {
+      transform-origin: center bottom;
+      transition: filter .18s ease, transform .18s ease;
+      will-change: transform;
+    }
+
+    .avatar-hi {
+      position: absolute;
+      top: -24px;
+      left: 70px;
+      z-index: 20;
+      display: block;
+      min-width: max-content;
+      padding: 4px 8px;
+      border: 2px solid #ffffff;
+      background: #2f63ce;
+      color: #ffffff;
+      box-shadow:
+        inset 1px 1px rgba(255,255,255,.35),
+        inset -1px -1px rgba(0,0,0,.22),
+        2px 2px 0 rgba(0,0,0,.35);
+      font-family: Tahoma, Verdana, "Segoe UI", Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(5px) scale(.94);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+
+    .avatar-hi::after {
+      content: "";
+      position: absolute;
+      left: 11px;
+      bottom: -8px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid #2f63ce;
+    }
+
+    .avatar-hover-card:hover .avatar-hi,
+    .avatar-hover-card:focus-within .avatar-hi {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .avatar-hover-card:hover .pixel-avatar,
+    .avatar-hover-card:focus-within .pixel-avatar {
+      filter: brightness(1.08);
+      animation: lisandraHello .72s ease-in-out 1;
+    }
+
+    @keyframes lisandraHello {
+      0%   { transform: translateY(0) rotate(0deg) scale(1); }
+      18%  { transform: translateY(-2px) rotate(-2deg) scale(1.02); }
+      36%  { transform: translateY(-4px) rotate(3deg) scale(1.03); }
+      54%  { transform: translateY(-3px) rotate(-2deg) scale(1.03); }
+      72%  { transform: translateY(-2px) rotate(2deg) scale(1.02); }
+      100% { transform: translateY(0) rotate(0deg) scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .avatar-hover-card .pixel-avatar,
+      .avatar-hover-card:hover .pixel-avatar,
+      .avatar-hover-card:focus-within .pixel-avatar {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+
+      .avatar-hi {
+        transition: none !important;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -47,9 +136,10 @@
             <p>Cloud & Cybersecurity Engineer</p>
           </div>
           <div class="profile-summary-grid">
-            <div class="pixel-avatar-wrap">
+            <div class="pixel-avatar-wrap avatar-hover-card" tabindex="0" aria-label="Lisandra retro avatar. Hover to say hello.">
               <img class="pixel-avatar" src="assests/meretro.png" alt="Retro avatar for Lisandra Duvernay" data-avatar-image>
               <div class="pixel-avatar-fallback" data-avatar-fallback>LD</div>
+              <span class="avatar-hi" aria-hidden="true">Hi! 👋</span>
             </div>
             <div class="profile-facts">
               <p class="profile-online"><span class="online-dot" aria-hidden="true"></span>Online</p>
@@ -221,7 +311,7 @@
   <dialog id="contact-dialog" class="win-dialog">
     <div class="dialog-window">
       <div class="win-titlebar"><span>💬 Instant Message — Lisandra Duvernay</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
-      <div class="messenger-profile"><div class="mini-avatar"><img src="assets/avatar-retro.png" alt="Retro avatar" data-avatar-image><span data-avatar-fallback>LD</span></div><div><strong>Lisandra Duvernay</strong><p class="online-text">● Online</p><small>Cloud & Cybersecurity Engineer</small><p>Status: securing cloud environments and occasionally breaking labs on purpose.</p></div></div>
+      <div class="messenger-profile"><div class="mini-avatar"><img src="assests/meretro.png" alt="Retro avatar" data-avatar-image><span data-avatar-fallback>LD</span></div><div><strong>Lisandra Duvernay</strong><p class="online-text">● Online</p><small>Cloud & Cybersecurity Engineer</small><p>Status: securing cloud environments and occasionally breaking labs on purpose.</p></div></div>
       <form class="xp-form" id="message-form">
         <label>Your Name <span>(required)</span><input name="name" required></label>
         <label>Your Email <span>(required)</span><input name="email" type="email" required></label>
@@ -237,7 +327,7 @@
     <div class="dialog-window small-window">
       <div class="win-titlebar"><span>👥 Add to Network</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
       <div class="dialog-padding">
-        <div class="messenger-profile compact-profile"><div class="mini-avatar"><img src="assets/avatar-retro.png" alt="Retro avatar" data-avatar-image><span data-avatar-fallback>LD</span></div><div><strong>Lisandra Duvernay</strong><small>Cloud & Cybersecurity Engineer</small><p class="online-text">● Online</p></div></div>
+        <div class="messenger-profile compact-profile"><div class="mini-avatar"><img src="assests/meretro.png" alt="Retro avatar" data-avatar-image><span data-avatar-fallback>LD</span></div><div><strong>Lisandra Duvernay</strong><small>Cloud & Cybersecurity Engineer</small><p class="online-text">● Online</p></div></div>
         <p>Lisandra is in your extended professional network.</p><p><strong>Would you like to connect with Lisandra?</strong></p><p class="muted-italic">Continues on LinkedIn — this site cannot send a connection request.</p>
       </div>
       <div class="dialog-actions footer-actions"><a class="xp-primary is-config-link" data-linkedin-link href="#">View LinkedIn</a><button class="xp-button js-close-dialog" type="button">Cancel</button></div>
@@ -263,7 +353,7 @@
     <div class="dialog-window small-window">
       <div class="win-titlebar"><span>💾 Add to Address Book</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
       <div class="dialog-padding">
-        <div class="messenger-profile compact-profile"><div class="mini-avatar"><img src="assets/avatar-retro.png" alt="Retro avatar" data-avatar-image><span data-avatar-fallback>LD</span></div><div><strong>Lisandra Duvernay</strong><small>Cloud & Cybersecurity Engineer</small></div></div>
+        <div class="messenger-profile compact-profile"><div class="mini-avatar"><img src="assests/meretro.png" alt="Retro avatar" data-avatar-image><span data-avatar-fallback>LD</span></div><div><strong>Lisandra Duvernay</strong><small>Cloud & Cybersecurity Engineer</small></div></div>
         <table class="contact-table"><tbody><tr><th>Email</th><td data-contact-email>Configure in script.js</td></tr><tr><th>LinkedIn</th><td data-contact-linkedin>Configure in script.js</td></tr><tr><th>GitHub</th><td>github.com/LisandraDv</td></tr><tr><th>Portfolio</th><td>lisandradv.github.io/lsdr-security-portfolio/</td></tr></tbody></table>
       </div>
       <div class="xp-statusbar"><span>Ready.</span></div>
@@ -305,7 +395,7 @@
         <nav class="legacy-nav"><span class="legacy-nav-icon">⌘</span><button type="button" data-legacy-target="legacy-home">Home</button><button type="button" data-legacy-target="legacy-projects">Portfolio⌄</button><button type="button" data-legacy-target="legacy-resume">Resume</button><button type="button" data-legacy-target="legacy-contact">Contact</button><strong>Lisandra S. Duvernay</strong></nav>
 
         <section id="legacy-home" class="legacy-section legacy-hero">
-          <div class="legacy-portrait"><img src="assets/avatar-retro.png" alt="Retro Lisandra illustration" data-avatar-image><span data-avatar-fallback>LD</span></div>
+          <div class="legacy-portrait"><img src="assests/meretro.png" alt="Retro Lisandra illustration" data-avatar-image><span data-avatar-fallback>LD</span></div>
           <div class="legacy-hero-copy"><h2>👋 HEY, I'M LISANDRA!</h2><p>I'm a Cloud & Cybersecurity Engineer focused on Azure, identity, Zero Trust, infrastructure security and Microsoft cloud technologies.</p><p>I love building secure systems, documenting what I learn, and turning technical work into practical, repeatable processes.</p></div>
         </section>
 
