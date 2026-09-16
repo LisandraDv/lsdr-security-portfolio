@@ -5,98 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Lisandra Duvernay — Cloud & Cybersecurity Engineer focused on Azure, IAM, Zero Trust, infrastructure and Microsoft security.">
   <meta name="theme-color" content="#16243a">
-  <title>Lisandra Duvernay — Cloud & Cybersecurity Portfolio</title>f
+  <title>Lisandra Duvernay — Cloud & Cybersecurity Portfolio</title>
   <link rel="stylesheet" href="./style.css?v=v3-1-20260916">
   <script src="./script.js?v=v3-1-20260916" defer></script>
-
-  <style>
-    /* ===== LISANDRA RETRO AVATAR HOVER ===== */
-    .avatar-hover-card {
-      position: relative;
-      overflow: visible !important;
-      isolation: isolate;
-    }
-
-    .avatar-hover-card .pixel-avatar {
-      transform-origin: center bottom;
-      transition: filter .18s ease, transform .18s ease;
-      will-change: transform;
-    }
-
-    .avatar-hi {
-      position: absolute;
-      top: -24px;
-      left: 70px;
-      z-index: 20;
-      display: block;
-      min-width: max-content;
-      padding: 4px 8px;
-      border: 2px solid #ffffff;
-      background: #2f63ce;
-      color: #ffffff;
-      box-shadow:
-        inset 1px 1px rgba(255,255,255,.35),
-        inset -1px -1px rgba(0,0,0,.22),
-        2px 2px 0 rgba(0,0,0,.35);
-      font-family: Tahoma, Verdana, "Segoe UI", Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      line-height: 1.2;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(5px) scale(.94);
-      transition: opacity .16s ease, transform .16s ease;
-    }
-
-    .avatar-hi::after {
-      content: "";
-      position: absolute;
-      left: 11px;
-      bottom: -8px;
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 8px solid #2f63ce;
-    }
-
-    .avatar-hover-card:hover .avatar-hi,
-    .avatar-hover-card:focus-within .avatar-hi {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    .avatar-hover-card:hover .pixel-avatar,
-    .avatar-hover-card:focus-within .pixel-avatar {
-      filter: brightness(1.08);
-      animation: lisandraHello .72s ease-in-out 1;
-    }
-
-    @keyframes lisandraHello {
-      0%   { transform: translateY(0) rotate(0deg) scale(1); }
-      18%  { transform: translateY(-2px) rotate(-2deg) scale(1.02); }
-      36%  { transform: translateY(-4px) rotate(3deg) scale(1.03); }
-      54%  { transform: translateY(-3px) rotate(-2deg) scale(1.03); }
-      72%  { transform: translateY(-2px) rotate(2deg) scale(1.02); }
-      100% { transform: translateY(0) rotate(0deg) scale(1); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .avatar-hover-card .pixel-avatar,
-      .avatar-hover-card:hover .pixel-avatar,
-      .avatar-hover-card:focus-within .pixel-avatar {
-        animation: none !important;
-        transition: none !important;
-        transform: none !important;
-      }
-
-      .avatar-hi {
-        transition: none !important;
-      }
-    }
-  </style>
-
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -135,28 +46,11 @@
             <h1 id="profile-name">Lisandra Duvernay</h1>
             <p>Cloud & Cybersecurity Engineer</p>
           </div>
-          
-<div
-  class="pixel-avatar-wrap avatar-hover-card"
-  tabindex="0"
-  aria-label="Lisandra retro avatar. Hover to say hello."
->
-  <img
-    class="pixel-avatar"
-    src="assests/meretro.png"
-    alt="Retro avatar for Lisandra Duvernay"
-    data-avatar-image
-  >
-
-  <div class="pixel-avatar-fallback" data-avatar-fallback>
-    LD
-  </div>
-
-  <span class="avatar-hi" aria-hidden="true">
-    Hello! I'm Lisandra 👋
-  </span>
-</div>
-            
+          <div class="profile-summary-grid">
+            <div class="pixel-avatar-wrap">
+              <img class="pixel-avatar" src="assests/meretro.png" alt="Retro avatar for Lisandra Duvernay" data-avatar-image>
+              <div class="pixel-avatar-fallback" data-avatar-fallback>LD</div>
+            </div>
             <div class="profile-facts">
               <p class="profile-online"><span class="online-dot" aria-hidden="true"></span>Online</p>
               <p>She/Her</p>
