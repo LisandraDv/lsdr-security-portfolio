@@ -757,3 +757,17 @@ select,
     padding-inline: max(18px, calc((100vw - 1460px) / 2 + 18px));
   }
 }
+
+/* Cerrar espacio vacío debajo de Project Explorer */
+.projects-home-panel .panel-content {
+  padding-bottom: 0;
+}
+
+.projects-home-panel .project-list {
+  margin-bottom: 0;
+}
+
+.projects-home-panel .project-row:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
