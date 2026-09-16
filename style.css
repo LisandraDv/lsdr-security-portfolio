@@ -1480,33 +1480,88 @@ select,
   }
 }
 
-/* ===== PRODUCTIVE RESUME PDF FRAME ===== */
+/* ===== COMPLETE RESUME PDF VIEWER · V3.8 ===== */
+
 .resume-stage {
-  padding: 18px;
-  background: #e9edf2;
+  padding: 14px;
+  background: linear-gradient(#eef1f5, #dfe4ea);
+  overflow: auto;
 }
 
-.resume-pdf-frame {
+.resume-pdf-pages {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  width: 100%;
+  min-height: 620px;
+}
+
+.resume-loading,
+.resume-fallback {
+  width: min(760px, 100%);
+  min-height: 220px;
+  margin: 18px auto;
+  padding: 28px;
+  border: 1px solid #b8bec7;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+  display: grid;
+  place-items: center;
+  gap: 16px;
+  text-align: center;
+  color: #1d2530;
+}
+
+.resume-page-shell {
+  width: min(900px, 100%);
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.resume-page-label {
+  justify-self: start;
+  padding: 3px 7px;
+  font: 11px/1.2 Tahoma, Verdana, sans-serif;
+  color: #4a5260;
+  background: rgba(255,255,255,.8);
+  border: 1px solid #c7ccd3;
+}
+
+.resume-page-canvas {
   display: block;
-  width: min(940px, 100%);
-  height: 100%;
-  min-height: 680px;
-  margin: 0 auto;
-
-  border: 1px solid #c9cdd2;
-  background: #ffffff;
-
+  max-width: 100%;
+  height: auto !important;
+  background: #fff;
+  border: 1px solid #bfc5cc;
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.08),
-    0 8px 18px rgba(0,0,0,.12);
+    0 1px 2px rgba(0,0,0,.18),
+    0 10px 24px rgba(0,0,0,.12);
+}
+
+.resume-window {
+  width: min(1120px, 94vw);
+}
+
+.resume-window .resume-stage {
+  height: min(72vh, 820px);
 }
 
 @media (max-width: 700px) {
   .resume-stage {
-    padding: 8px;
+    padding: 7px;
   }
 
-  .resume-pdf-frame {
-    min-height: 560px;
+  .resume-pdf-pages {
+    gap: 12px;
+    min-height: 520px;
+  }
+
+  .resume-page-label {
+    font-size: 10px;
+  }
+
+  .resume-window .resume-stage {
+    height: 68vh;
   }
 }
