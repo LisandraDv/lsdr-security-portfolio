@@ -9,6 +9,7 @@ const CONFIG = {
 
 const ACCESS_KEY = "lisandraos-accessibility-v3";
 const THEME_KEY = "lisandraos-theme-v3";
+const PALETTE_KEY = "lisandraos-palette-v32";
 let lastTrigger = null;
 let galleryImages = [];
 let galleryIndex = 0;
@@ -336,22 +337,153 @@ function wireLegacyArchive() {
   });
 }
 
-function wireTheme() {
-  const buttons = qsa("[data-theme-toggle]");
-  const stored = localStorage.getItem(THEME_KEY);
-  if (stored === "light") document.body.classList.add("light-theme");
-  const sync = () => {
-    const light = document.body.classList.contains("light-theme");
-    qsa(".theme-button").forEach((button) => {
-      button.innerHTML = light ? "🎨 Light" : "🎨 Default";
-    });
+const PALETTES = {
+  "cyber-girl": {
+    label: "Cyber Girl",
+    primary: "#ff5f93",
+    secondary: "#b188ff",
+    soft: "#c7b3ff",
+    deep: "#6f478f"
+  },
+  "classic-blue": {
+    label: "Classic Blue",
+    primary: "#4f9cff",
+    secondary: "#75a8ee",
+    soft: "#a9cfff",
+    deep: "#2858a6"
+  },
+  "cyan-night": {
+    label: "Cyan Night",
+    primary: "#20d9df",
+    secondary: "#7857d8",
+    soft: "#9ff4f0",
+    deep: "#35518d"
+  },
+  "violet": {
+    label: "Violet",
+    primary: "#c05cff",
+    secondary: "#8e65ef",
+    soft: "#d8b5ff",
+    deep: "#643c95"
+  }
+};
+
+function normalizeHex(hex) {
+  const value = String(hex || "").trim();
+  if (/^#[0-9a-f]{6}$/i.test(value)) return value.toLowerCase();
+  return "#ff5f93";
+}
+
+function mixHex(hex, mixWith = "#ffffff", amount = 0.35) {
+  const a = normalizeHex(hex).slice(1);
+  const b = normalizeHex(mixWith).slice(1);
+  const ar = parseInt(a.slice(0,2),16), ag = parseInt(a.slice(2,4),16), ab = parseInt(a.slice(4,6),16);
+  const br = parseInt(b.slice(0,2),16), bg = parseInt(b.slice(2,4),16), bb = parseInt(b.slice(4,6),16);
+  const blend = (x, y) => Math.round(x + (y - x) * amount).toString(16).padStart(2, "0");
+  return `#${blend(ar,br)}${blend(ag,bg)}${blend(ab,bb)}`;
+}
+
+function applyPalette(palette, persist = true) {
+  const root = document.documentElement;
+  root.style.setProperty("--accent", palette.primary);
+  root.style.setProperty("--accent-2", palette.secondary);
+  root.style.setProperty("--accent-soft", palette.soft);
+  root.style.setProperty("--accent-deep", palette.deep);
+
+  const label = qs("[data-theme-label]");
+  if (label) label.textContent = palette.label || "Custom";
+
+  const primaryInput = qs("[data-custom-primary]");
+  const secondaryInput = qs("[data-custom-secondary]");
+  if (primaryInput) primaryInput.value = normalizeHex(palette.primary);
+  if (secondaryInput) secondaryInput.value = normalizeHex(palette.secondary);
+
+  qsa("[data-palette]").forEach((button) => {
+    button.setAttribute("aria-pressed", button.dataset.palette === palette.id ? "true" : "false");
+  });
+
+  if (persist) localStorage.setItem(PALETTE_KEY, JSON.stringify(palette));
+}
+
+function readPalette() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PALETTE_KEY) || "null");
+    if (saved?.primary && saved?.secondary) return saved;
+  } catch {}
+  return { id: "cyber-girl", ...PALETTES["cyber-girl"] };
+}
+
+function wireThemeCustomizer() {
+  applyPalette(readPalette(), false);
+
+  const menu = qs("[data-theme-menu]");
+  const opener = qs("[data-open-theme]");
+  const modeButton = qs("[data-mode-toggle]");
+
+  const setMenu = (open) => {
+    if (!menu || !opener) return;
+    menu.hidden = !open;
+    opener.setAttribute("aria-expanded", open ? "true" : "false");
   };
-  sync();
-  buttons.forEach((button) => button.addEventListener("click", () => {
+
+  opener?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setMenu(menu?.hidden ?? true);
+  });
+
+  qsa("[data-palette]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = button.dataset.palette;
+      const preset = PALETTES[id];
+      if (!preset) return;
+      applyPalette({ id, ...preset });
+      setMenu(false);
+      showToast(`${preset.label} theme applied.`);
+    });
+  });
+
+  qs("[data-apply-custom-theme]")?.addEventListener("click", () => {
+    const primary = normalizeHex(qs("[data-custom-primary]")?.value);
+    const secondary = normalizeHex(qs("[data-custom-secondary]")?.value);
+    const custom = {
+      id: "custom",
+      label: "Custom",
+      primary,
+      secondary,
+      soft: mixHex(secondary, "#ffffff", .42),
+      deep: mixHex(primary, "#000000", .48)
+    };
+    applyPalette(custom);
+    setMenu(false);
+    showToast("Custom colors applied.");
+  });
+
+  const storedMode = localStorage.getItem(THEME_KEY);
+  if (storedMode === "light") document.body.classList.add("light-theme");
+
+  const syncModeButton = () => {
+    if (!modeButton) return;
+    const light = document.body.classList.contains("light-theme");
+    modeButton.textContent = light ? "🌙" : "☀️";
+    modeButton.title = light ? "Switch to dark mode" : "Switch to light mode";
+    modeButton.setAttribute("aria-label", modeButton.title);
+  };
+
+  syncModeButton();
+  modeButton?.addEventListener("click", () => {
     document.body.classList.toggle("light-theme");
     localStorage.setItem(THEME_KEY, document.body.classList.contains("light-theme") ? "light" : "default");
-    sync();
-  }));
+    syncModeButton();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!menu || menu.hidden) return;
+    if (!event.target.closest(".theme-picker")) setMenu(false);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenu(false);
+  });
 }
 
 function wireSearch() {
@@ -403,7 +535,7 @@ function initialize() {
   wireMessageForm();
   wireUtilityActions();
   wireLegacyArchive();
-  wireTheme();
+  wireThemeCustomizer();
   wireSearch();
   wireSelectableChips();
 }

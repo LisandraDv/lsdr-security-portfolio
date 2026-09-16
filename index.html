@@ -6,25 +6,69 @@
   <meta name="description" content="Lisandra Duvernay — Cloud & Cybersecurity Engineer focused on Azure, IAM, Zero Trust, infrastructure and Microsoft security.">
   <meta name="theme-color" content="#16243a">
   <title>Lisandra Duvernay — Cloud & Cybersecurity Portfolio</title>
-  <link rel="stylesheet" href="./style.css?v=v3-1-20260916">
-  <script src="./script.js?v=v3-1-20260916" defer></script>
+  <link rel="stylesheet" href="./style.css?v=v3-2-20260916">
+  <script src="./script.js?v=v3-2-20260916" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="portal-header" id="home">
     <div class="portal-brand">
-      <strong>MyPortfolio</strong>
-      <span>a place to showcase my work</span>
+      <strong>LisandraOS</strong>
+      <span>cloud • security • infrastructure</span>
     </div>
-    <label class="profile-search" aria-label="Search this portfolio">
+
+    <label class="profile-search" aria-label="Search Lisandra's portfolio">
       <span>⌕</span>
-      <input id="profile-search" type="search" placeholder="Search profile...">
+      <input id="profile-search" type="search" placeholder="Search Lisandra's portfolio...">
     </label>
+
     <div class="portal-tools">
-      <button class="header-link js-open-accessibility" type="button">❔ Help</button>
-      <button class="theme-button" type="button" data-theme-toggle><span>🎨</span> Default</button>
-      <button class="sun-button" type="button" data-theme-toggle aria-label="Toggle theme">☀️</button>
+      <button class="header-link js-open-accessibility" type="button">♿ Accessibility</button>
+
+      <div class="theme-picker">
+        <button class="theme-button" type="button" data-open-theme aria-haspopup="true" aria-expanded="false">
+          <span>🎨</span>
+          <span data-theme-label>Cyber Girl</span>
+        </button>
+
+        <div class="theme-menu" data-theme-menu hidden>
+          <div class="theme-menu-heading">
+            <strong>Choose your accent</strong>
+            <small>Saved in this browser</small>
+          </div>
+
+          <div class="theme-presets" aria-label="Theme presets">
+            <button type="button" class="theme-swatch cyber-girl" data-palette="cyber-girl" aria-label="Cyber Girl pink and lilac theme">
+              <span></span><b>Cyber Girl</b>
+            </button>
+            <button type="button" class="theme-swatch classic-blue" data-palette="classic-blue" aria-label="Classic Windows blue theme">
+              <span></span><b>Classic Blue</b>
+            </button>
+            <button type="button" class="theme-swatch cyan-night" data-palette="cyan-night" aria-label="Cyan Night theme">
+              <span></span><b>Cyan Night</b>
+            </button>
+            <button type="button" class="theme-swatch violet" data-palette="violet" aria-label="Violet theme">
+              <span></span><b>Violet</b>
+            </button>
+          </div>
+
+          <div class="custom-theme-controls">
+            <strong>Custom colors</strong>
+            <label>
+              <span>Primary</span>
+              <input type="color" value="#ff5f93" data-custom-primary>
+            </label>
+            <label>
+              <span>Secondary</span>
+              <input type="color" value="#b188ff" data-custom-secondary>
+            </label>
+            <button class="theme-apply" type="button" data-apply-custom-theme>Apply custom</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="sun-button" type="button" data-mode-toggle aria-label="Toggle light or dark mode" title="Light / dark mode">☀️</button>
     </div>
   </header>
 
@@ -131,6 +175,21 @@
             <div class="built-with-row"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span></div>
           </div>
         </section>
+
+
+    <section id="projects" class="retro-panel projects-home-panel" aria-labelledby="projects-title">
+      <div class="panel-title">Project Explorer — Security Lab</div>
+      <div class="panel-content">
+        <div class="section-intro"><div><h2 id="projects-title">Featured Projects</h2><p>Hands-on labs focused on prevention, hardening, detection and remediation.</p></div><a class="retro-button" href="https://github.com/LisandraDv/lsdr-security-portfolio" target="_blank" rel="noreferrer">Open Repository</a></div>
+        <div class="project-list">
+          <article class="project-row"><div class="project-folder">📁</div><div><h3>01 — Secure Code, SCA, SAST & Secret Detection</h3><p>Detect insecure code, vulnerable dependencies and exposed secrets before deployment.</p><small>Semgrep · Gitleaks · Trivy · GitHub Actions</small></div><button class="text-button js-project" type="button" data-title="Secure Code, SCA, SAST & Secret Detection" data-objective="Prevent vulnerable dependencies, insecure code patterns and exposed secrets from reaching production." data-tools="GitHub Actions · Semgrep · Gitleaks · Trivy · OWASP Dependency-Check" data-path="01-secure-code-sca-sast-secret-detection/">(view more)</button></article>
+          <article class="project-row"><div class="project-folder">📁</div><div><h3>02 — IaC Security & Policy as Code</h3><p>Validate Azure infrastructure definitions before resources are provisioned.</p><small>Terraform · Checkov · tfsec · Azure Policy</small></div><button class="text-button js-project" type="button" data-title="Infrastructure as Code Security & Policy as Code" data-objective="Reduce cloud misconfigurations by applying IaC security checks and Policy as Code before deployment." data-tools="Terraform · Checkov · tfsec · Azure Policy · GitHub Actions" data-path="02-iac-security-policy-as-code/">(view more)</button></article>
+          <article class="project-row"><div class="project-folder">📁</div><div><h3>03 — Container & Kubernetes Security</h3><p>Assess container images, registries, workloads and runtime security.</p><small>Docker · Kubernetes · Trivy</small></div><button class="text-button js-project" type="button" data-title="Container & Kubernetes Security" data-objective="Explore practical container and Kubernetes security controls across build and runtime stages." data-tools="Docker · Kubernetes · Trivy · security scanning" data-path="03-container-kubernetes-security/">(view more)</button></article>
+          <article class="project-row"><div class="project-folder">📁</div><div><h3>04 — DAST & Continuous Security Monitoring</h3><p>Runtime testing and security observability for deployed applications.</p><small>DAST · Monitoring · Detection</small></div><button class="text-button js-project" type="button" data-title="DAST & Continuous Security Monitoring" data-objective="Combine dynamic testing with continuous visibility to identify application security issues in runtime contexts." data-tools="DAST · monitoring · security reporting" data-path="04-dast-continuous-security-monitoring/">(view more)</button></article>
+          <article class="project-row"><div class="project-folder">📁</div><div><h3>05 — Azure & Microsoft 365 Security Hardening</h3><p>Strengthen identity, access, security baselines and monitoring controls.</p><small>Azure · M365 · Entra ID · Defender</small></div><button class="text-button js-project" type="button" data-title="Cloud Security Hardening — Azure & Microsoft 365" data-objective="Review and strengthen cloud identity, access, hardening and monitoring controls across Microsoft environments." data-tools="Azure · Microsoft 365 · Entra ID · Defender · governance controls" data-path="05-cloud-security-hardening-azure-m365/">(view more)</button></article>
+        </div>
+      </div>
+    </section>
       </div>
     </div>
 
@@ -162,20 +221,6 @@
             <div class="training-memory-copy"><h3>Fortinet / Cisco Security Training</h3><p>Cybersecurity & operations</p><small>Defensive security, CyberOps and technical learning</small></div>
             <button class="retro-button js-training" type="button" data-title="Fortinet / Cisco Security Training" data-provider="Fortinet / Cisco" data-location="Technical training" data-description="Cybersecurity and security operations learning focused on practical defensive concepts." data-images="">View Memories</button>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="retro-panel wide-panel" aria-labelledby="projects-title">
-      <div class="panel-title">Project Explorer — Security Lab</div>
-      <div class="panel-content">
-        <div class="section-intro"><div><h2 id="projects-title">Featured Projects</h2><p>Hands-on labs focused on prevention, hardening, detection and remediation.</p></div><a class="retro-button" href="https://github.com/LisandraDv/lsdr-security-portfolio" target="_blank" rel="noreferrer">Open Repository</a></div>
-        <div class="project-list">
-          <article class="project-row"><div class="project-folder">📁</div><div><h3>01 — Secure Code, SCA, SAST & Secret Detection</h3><p>Detect insecure code, vulnerable dependencies and exposed secrets before deployment.</p><small>Semgrep · Gitleaks · Trivy · GitHub Actions</small></div><button class="text-button js-project" type="button" data-title="Secure Code, SCA, SAST & Secret Detection" data-objective="Prevent vulnerable dependencies, insecure code patterns and exposed secrets from reaching production." data-tools="GitHub Actions · Semgrep · Gitleaks · Trivy · OWASP Dependency-Check" data-path="01-secure-code-sca-sast-secret-detection/">(view more)</button></article>
-          <article class="project-row"><div class="project-folder">📁</div><div><h3>02 — IaC Security & Policy as Code</h3><p>Validate Azure infrastructure definitions before resources are provisioned.</p><small>Terraform · Checkov · tfsec · Azure Policy</small></div><button class="text-button js-project" type="button" data-title="Infrastructure as Code Security & Policy as Code" data-objective="Reduce cloud misconfigurations by applying IaC security checks and Policy as Code before deployment." data-tools="Terraform · Checkov · tfsec · Azure Policy · GitHub Actions" data-path="02-iac-security-policy-as-code/">(view more)</button></article>
-          <article class="project-row"><div class="project-folder">📁</div><div><h3>03 — Container & Kubernetes Security</h3><p>Assess container images, registries, workloads and runtime security.</p><small>Docker · Kubernetes · Trivy</small></div><button class="text-button js-project" type="button" data-title="Container & Kubernetes Security" data-objective="Explore practical container and Kubernetes security controls across build and runtime stages." data-tools="Docker · Kubernetes · Trivy · security scanning" data-path="03-container-kubernetes-security/">(view more)</button></article>
-          <article class="project-row"><div class="project-folder">📁</div><div><h3>04 — DAST & Continuous Security Monitoring</h3><p>Runtime testing and security observability for deployed applications.</p><small>DAST · Monitoring · Detection</small></div><button class="text-button js-project" type="button" data-title="DAST & Continuous Security Monitoring" data-objective="Combine dynamic testing with continuous visibility to identify application security issues in runtime contexts." data-tools="DAST · monitoring · security reporting" data-path="04-dast-continuous-security-monitoring/">(view more)</button></article>
-          <article class="project-row"><div class="project-folder">📁</div><div><h3>05 — Azure & Microsoft 365 Security Hardening</h3><p>Strengthen identity, access, security baselines and monitoring controls.</p><small>Azure · M365 · Entra ID · Defender</small></div><button class="text-button js-project" type="button" data-title="Cloud Security Hardening — Azure & Microsoft 365" data-objective="Review and strengthen cloud identity, access, hardening and monitoring controls across Microsoft environments." data-tools="Azure · Microsoft 365 · Entra ID · Defender · governance controls" data-path="05-cloud-security-hardening-azure-m365/">(view more)</button></article>
         </div>
       </div>
     </section>
@@ -226,7 +271,7 @@
         <label>Your Name <span>(required)</span><input name="name" required></label>
         <label>Your Email <span>(required)</span><input name="email" type="email" required></label>
         <label>Message <span>(required)</span><textarea name="message" rows="6" required></textarea></label>
-        <div class="dialog-actions"><button class="xp-primary" type="submit">Send IM</button><button class="xp-button js-close-dialog" type="button">Cancel</button></div>
+        <div class="dialog-actions"><button class="xp-primary send-im-button" type="submit">Send IM</button><button class="xp-button js-close-dialog" type="button">Cancel</button></div>
         <p class="dialog-status" data-message-status aria-live="polite"></p>
       </form>
       <div class="xp-statusbar"><span>Online</span><span>Connected</span></div>
