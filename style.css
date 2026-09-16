@@ -1246,3 +1246,236 @@ select,
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== TRAINING MEMORIES — V3.6 HARD ALIGNMENT FIX ===== */
+
+/*
+   Important:
+   Older rules above this block use align-items:start and generic white
+   .retro-button styles. These overrides intentionally win.
+*/
+
+.training-memory-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  grid-auto-rows: 1fr;
+  gap: 16px !important;
+  align-items: stretch !important;
+}
+
+.training-memory-card {
+  display: grid !important;
+  grid-template-rows: auto 1fr auto !important;
+  align-self: stretch !important;
+
+  min-width: 0;
+  height: 100% !important;
+
+  gap: 10px !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/*
+  Text area consumes all remaining space.
+  This is what pins every button to the exact same bottom line.
+*/
+.training-memory-copy {
+  display: flex !important;
+  flex-direction: column;
+  align-self: stretch;
+  justify-content: flex-start;
+
+  min-height: 105px !important;
+  height: 100%;
+
+  padding: 0 4px !important;
+}
+
+.training-memory-copy h3 {
+  margin: 0 0 4px !important;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.training-memory-copy p {
+  margin: 0 0 4px !important;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.training-memory-copy small {
+  margin-top: auto;
+  padding-top: 4px;
+
+  font-size: 11px;
+  line-height: 1.3;
+
+  color:
+    color-mix(
+      in srgb,
+      var(--accent-soft) 72%,
+      #9fb5cc
+    );
+}
+
+/* Identical CRT height for every preview. */
+.retro-crt-monitor {
+  width: 100% !important;
+  align-self: start;
+}
+
+.retro-crt-screen {
+  width: 100% !important;
+  aspect-ratio: 4 / 3 !important;
+}
+
+/* Panama preview stays panama03 */
+.training-card-panama .retro-crt-screen img {
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+/* Costa Rica shows the whole image instead of cropping heads/edges. */
+.training-card-costarica .retro-crt-screen img {
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #070b10 !important;
+}
+
+/* ===== RETRO VIEW MEMORIES BUTTON ===== */
+
+.training-memory-card > .retro-button {
+  align-self: end !important;
+
+  width: calc(100% - 8px) !important;
+  min-height: 38px !important;
+  height: 38px;
+
+  margin: 0 4px !important;
+  padding: 0 12px !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--accent-deep) 74%,
+      #163c72
+    ) !important;
+
+  border-radius: 3px !important;
+
+  color: #ffffff !important;
+
+  font-family:
+    Tahoma,
+    Verdana,
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+
+  font-size: 13px !important;
+  font-weight: 700 !important;
+
+  line-height: 1 !important;
+
+  text-align: center;
+
+  text-shadow:
+    1px 1px
+    rgba(31, 16, 57, .62);
+
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent-soft) 58%, #ffffff) 0%,
+      color-mix(in srgb, var(--accent-2) 82%, #ffffff) 13%,
+      var(--accent-2) 50%,
+      var(--accent-deep) 100%
+    ) !important;
+
+  box-shadow:
+    inset 1px 1px rgba(255,255,255,.55),
+    inset -1px -1px rgba(0,0,0,.34),
+    0 1px 0 rgba(255,255,255,.12) !important;
+
+  transition:
+    transform .12s ease,
+    filter .12s ease,
+    box-shadow .12s ease;
+}
+
+.training-memory-card > .retro-button::before {
+  content: "▣";
+  display: inline-block;
+
+  margin-right: 7px;
+
+  color: #ffffff;
+  opacity: .96;
+
+  font-size: 12px;
+}
+
+.training-memory-card > .retro-button:hover {
+  filter: brightness(1.10);
+
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    inset 1px 1px rgba(255,255,255,.65),
+    inset -1px -1px rgba(0,0,0,.32),
+    0 0 10px
+    color-mix(
+      in srgb,
+      var(--accent) 28%,
+      transparent
+    ) !important;
+}
+
+.training-memory-card > .retro-button:active {
+  transform:
+    translateY(1px);
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--accent-deep) 0%,
+      var(--accent-2) 58%,
+      color-mix(in srgb, var(--accent-soft) 62%, #ffffff) 100%
+    ) !important;
+
+  box-shadow:
+    inset 1px 1px rgba(0,0,0,.24),
+    inset -1px -1px rgba(255,255,255,.26) !important;
+}
+
+/* Responsive layouts keep the same bottom-button alignment per row. */
+@media (max-width: 1350px) {
+  .training-memory-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .training-memory-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .training-memory-grid {
+    grid-template-columns:
+      1fr !important;
+  }
+}
