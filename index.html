@@ -6,8 +6,9 @@
   <meta name="description" content="Lisandra Duvernay — Cloud & Cybersecurity Engineer focused on Azure, IAM, Zero Trust, infrastructure and Microsoft security.">
   <meta name="theme-color" content="#16243a">
   <title>Lisandra Duvernay — Cloud & Cybersecurity Portfolio</title>
-  <link rel="stylesheet" href="./style.css?v=v3-6-20260916">
-  <script src="./script.js?v=v3-7-20260916" defer></script>
+  <link rel="stylesheet" href="./style.css?v=v3-8-20260916">
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js" defer></script>
+  <script src="./script.js?v=v3-8-20260916" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -375,7 +376,7 @@
         <label>Your Email <span>(required)</span><input name="email" type="email" required></label>
         <label>Message <span>(required)</span><textarea name="message" rows="6" required></textarea></label>
         <div class="dialog-actions"><button class="xp-primary send-im-button" type="submit">Send Message</button><button class="xp-button js-close-dialog" type="button">Cancel</button></div>
-        <p class="dialog-status" data-message-status aria-live="polite"></p>
+        <p class="dialog-status" data-message-status aria-live="polite">Ready to send a message.</p>
       </form>
       <div class="xp-statusbar"><span>Online</span><span>Connected</span></div>
     </div>
@@ -401,7 +402,7 @@
         <h3>Choose a meeting length:</h3>
         <label class="meeting-option"><input type="radio" name="meeting-length" value="15" checked><span><strong>◷ 15 Minutes</strong><small>Quick intro, portfolio discussion, or question.</small></span></label>
         <label class="meeting-option"><input type="radio" name="meeting-length" value="30"><span><strong>◷ 30 Minutes</strong><small>Longer conversation about cloud, security, opportunities, projects, or technical topics.</small></span></label>
-        <p class="dialog-status" data-schedule-status aria-live="polite"></p>
+        <p class="dialog-status" data-schedule-status aria-live="polite">Choose a meeting length to view availability.</p>
       </div>
       <div class="dialog-actions footer-actions"><button class="xp-primary js-view-times" type="button">View Available Times</button><button class="xp-button js-close-dialog" type="button">Cancel</button></div>
     </div>
@@ -423,8 +424,12 @@
     <div class="dialog-window resume-window">
       <div class="win-titlebar"><span>📄 CV_Lisandra_Duvernay_OFC_WC.pdf — My Documents</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
       <div class="resume-toolbar"><button class="xp-button js-open-resume-file" type="button">📄 Open</button><a class="xp-button is-config-link" data-resume-link href="#">💾 Download PDF</a></div>
-      <div class="resume-stage"><iframe class="resume-pdf-frame" data-resume-frame title="Lisandra Duvernay resume PDF"></iframe></div>
-      <div class="xp-statusbar"><span>Ready</span><span>Resume preview</span></div>
+      <div class="resume-stage">
+        <div class="resume-pdf-pages" data-resume-pages aria-live="polite">
+          <div class="resume-loading">Loading complete resume…</div>
+        </div>
+      </div>
+      <div class="xp-statusbar"><span data-resume-status>Ready</span><span>Complete resume</span></div>
     </div>
   </dialog>
 
