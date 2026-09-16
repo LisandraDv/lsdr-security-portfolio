@@ -758,16 +758,18 @@ select,
   }
 }
 
-/* Cerrar espacio vacío debajo de Project Explorer */
+/* Project Explorer — compact bottom */
 .projects-home-panel .panel-content {
-  padding-bottom: 0;
+  padding-bottom: 0 !important;
 }
 
 .projects-home-panel .project-list {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .projects-home-panel .project-row:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
+  padding-bottom: 8px;
   border-bottom: 0;
 }
