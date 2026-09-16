@@ -1,8 +1,9 @@
 const CONFIG = {
-  email: "",
+  email: "lisandraduvernay211221@gmail.com",
   linkedin: "",
-  calendar: "",
-  resumePdf: "",
+  calendar15: "https://calendly.com/lisandraduvernay211221/new-meeting",
+  calendar30: "https://calendly.com/lisandraduvernay211221/30min",
+  resumePdf: "./assests/resume/CV_Lisandra_Duvernay_OFC_WC.pdf",
   github: "https://github.com/LisandraDv",
   portfolio: "https://lisandradv.github.io/lsdr-security-portfolio/"
 };
@@ -64,24 +65,38 @@ function configureLinks() {
       link.removeAttribute("aria-disabled");
     } else {
       link.setAttribute("aria-disabled", "true");
-      link.title = "Add your LinkedIn URL in CONFIG.linkedin inside script.js";
+      link.title = "LinkedIn URL has not been configured yet.";
     }
   });
+
   qsa("[data-resume-link]").forEach((link) => {
     if (CONFIG.resumePdf) {
       link.href = CONFIG.resumePdf;
-      link.target = "_blank";
-      link.rel = "noreferrer";
+      link.download = "CV_Lisandra_Duvernay_OFC_WC.pdf";
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
       link.removeAttribute("aria-disabled");
+      link.removeAttribute("title");
     } else {
       link.setAttribute("aria-disabled", "true");
-      link.title = "Upload your resume PDF and set CONFIG.resumePdf in script.js";
+      link.title = "Resume PDF is not configured.";
     }
   });
+
+  const resumeFrame = qs("[data-resume-frame]");
+  if (resumeFrame && CONFIG.resumePdf) {
+    resumeFrame.src = CONFIG.resumePdf;
+  }
+
   const emailCell = qs("[data-contact-email]");
   if (emailCell && CONFIG.email) emailCell.textContent = CONFIG.email;
+
   const linkedInCell = qs("[data-contact-linkedin]");
-  if (linkedInCell && CONFIG.linkedin) linkedInCell.textContent = CONFIG.linkedin.replace(/^https?:\/\/(www\.)?/, "");
+  if (linkedInCell && CONFIG.linkedin) {
+    linkedInCell.textContent = CONFIG.linkedin.replace(/^https?:\/\/(www\.)?/, "");
+  } else if (linkedInCell) {
+    linkedInCell.textContent = "Not configured";
+  }
 }
 
 function openConnectDialog(trigger) {
@@ -242,30 +257,58 @@ function wireAccessibility() {
 function wireMessageForm() {
   const form = document.getElementById("message-form");
   if (!form) return;
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+
     const status = qs("[data-message-status]", form);
+
     if (!CONFIG.email) {
-      status.textContent = "Add your public contact email to CONFIG.email in script.js to enable Send IM.";
+      if (status) status.textContent = "Contact email is not configured.";
       return;
     }
+
     const data = new FormData(form);
-    const subject = encodeURIComponent(`Portfolio message from ${data.get("name")}`);
-    const body = encodeURIComponent(`From: ${data.get("name")} <${data.get("email")}>\n\n${data.get("message")}`);
+    const name = String(data.get("name") || "").trim();
+    const senderEmail = String(data.get("email") || "").trim();
+    const message = String(data.get("message") || "").trim();
+
+    const subject = encodeURIComponent(`Portfolio message from ${name}`);
+    const body = encodeURIComponent(
+      `Hi Lisandra,
+
+${message}
+
+` +
+      `From: ${name}
+` +
+      `Email: ${senderEmail}
+
+` +
+      `Sent from LisandraOS portfolio.`
+    );
+
+    if (status) status.textContent = "Opening your email app…";
     window.location.href = `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
-    status.textContent = "Opening your email app…";
   });
 }
 
 function openAvailableTimes() {
   const status = qs("[data-schedule-status]");
-  if (!CONFIG.calendar) {
-    if (status) status.textContent = "Add your Calendly/booking URL to CONFIG.calendar in script.js to enable scheduling.";
+  const length = qs('input[name="meeting-length"]:checked')?.value || "15";
+
+  const target = length === "30" ? CONFIG.calendar30 : CONFIG.calendar15;
+
+  if (!target) {
+    if (status) status.textContent = "Scheduling link is not configured.";
     return;
   }
-  const length = qs('input[name="meeting-length"]:checked')?.value || "15";
-  const separator = CONFIG.calendar.includes("?") ? "&" : "?";
-  window.open(`${CONFIG.calendar}${separator}duration=${encodeURIComponent(length)}`, "_blank", "noopener,noreferrer");
+
+  if (status) {
+    status.textContent = `Opening ${length}-minute availability in Calendly…`;
+  }
+
+  window.open(target, "_blank", "noopener,noreferrer");
 }
 
 function incrementLocalViews() {
