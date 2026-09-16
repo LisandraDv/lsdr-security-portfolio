@@ -113,6 +113,8 @@ function openScheduleDialog(trigger) {
 }
 
 let resumeRenderPromise = null;
+let resumePdfDocumentPromise = null;
+let resumePageObserver = null;
 
 function createResumeFallback(container, message) {
   container.replaceChildren();
@@ -134,80 +136,307 @@ function createResumeFallback(container, message) {
   container.appendChild(fallback);
 }
 
+function getResumePdfDocument() {
+  if (resumePdfDocumentPromise) return resumePdfDocumentPromise;
+
+  if (!window.pdfjsLib || !CONFIG.resumePdf) {
+    return Promise.reject(new Error("PDF preview library is unavailable."));
+  }
+
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+
+  resumePdfDocumentPromise = window.pdfjsLib
+    .getDocument(CONFIG.resumePdf)
+    .promise
+    .catch((error) => {
+      resumePdfDocumentPromise = null;
+      throw error;
+    });
+
+  return resumePdfDocumentPromise;
+}
+
+function preloadResumePdf() {
+  if (!window.pdfjsLib || !CONFIG.resumePdf) return;
+
+  getResumePdfDocument().catch(() => {
+    // Silent preload failure. The normal fallback handles it when opened.
+  });
+}
+
+function scheduleResumePreload() {
+  const startPreload = () => preloadResumePdf();
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(startPreload, { timeout: 3000 });
+  } else {
+    window.setTimeout(startPreload, 1200);
+  }
+}
+
+function createResumePageShell(pageNumber, totalPages) {
+  const pageShell = document.createElement("section");
+  pageShell.className = "resume-page-shell";
+  pageShell.dataset.resumePage = String(pageNumber);
+  pageShell.dataset.rendered = "false";
+  pageShell.setAttribute(
+    "aria-label",
+    `Resume page ${pageNumber} of ${totalPages}`
+  );
+
+  const pageLabel = document.createElement("div");
+  pageLabel.className = "resume-page-label";
+  pageLabel.textContent = `Page ${pageNumber} of ${totalPages}`;
+
+  const placeholder = document.createElement("div");
+  placeholder.className = "resume-loading";
+  placeholder.dataset.resumePlaceholder = "";
+  placeholder.textContent =
+    pageNumber === 1
+      ? "Loading first page…"
+      : `Page ${pageNumber} loads as you scroll…`;
+
+  pageShell.append(pageLabel, placeholder);
+  return pageShell;
+}
+
+async function renderResumePage(
+  pdf,
+  pageNumber,
+  pageShell,
+  status,
+  totalPages
+) {
+  if (!pageShell || pageShell.dataset.rendered === "true") return;
+  if (pageShell.dataset.rendering === "true") return;
+
+  pageShell.dataset.rendering = "true";
+
+  try {
+    const page = await pdf.getPage(pageNumber);
+    const viewport = page.getViewport({ scale: 1.35 });
+    const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+
+    const canvas = document.createElement("canvas");
+    canvas.className = "resume-page-canvas";
+
+    canvas.width = Math.floor(viewport.width * outputScale);
+    canvas.height = Math.floor(viewport.height * outputScale);
+    canvas.style.width = `${Math.floor(viewport.width)}px`;
+    canvas.style.height = `${Math.floor(viewport.height)}px`;
+
+    const context = canvas.getContext("2d", { alpha: false });
+
+    const renderContext = {
+      canvasContext: context,
+      viewport
+    };
+
+    if (outputScale !== 1) {
+      renderContext.transform = [
+        outputScale,
+        0,
+        0,
+        outputScale,
+        0,
+        0
+      ];
+    }
+
+    await page.render(renderContext).promise;
+
+    const placeholder = qs("[data-resume-placeholder]", pageShell);
+
+    if (placeholder) {
+      placeholder.replaceWith(canvas);
+    } else {
+      pageShell.appendChild(canvas);
+    }
+
+    pageShell.dataset.rendered = "true";
+    delete pageShell.dataset.rendering;
+
+    const loadedPages = qsa(
+      '[data-resume-page][data-rendered="true"]'
+    ).length;
+
+    if (status) {
+      if (loadedPages >= totalPages) {
+        status.textContent =
+          `Complete resume loaded · ${totalPages} page${totalPages === 1 ? "" : "s"}`;
+      } else if (pageNumber === 1) {
+        status.textContent =
+          `Page 1 ready · ${totalPages} pages total · scroll to load more`;
+      } else {
+        status.textContent =
+          `${loadedPages} of ${totalPages} pages ready · remaining pages load as you scroll`;
+      }
+    }
+  } catch (error) {
+    delete pageShell.dataset.rendering;
+    console.error(`Resume page ${pageNumber} preview error:`, error);
+
+    const placeholder = qs("[data-resume-placeholder]", pageShell);
+
+    if (placeholder) {
+      placeholder.textContent =
+        `Page ${pageNumber} could not be previewed.`;
+    }
+  }
+}
+
+function observeRemainingResumePages(
+  pdf,
+  pageShells,
+  status,
+  totalPages
+) {
+  const remainingPages = pageShells.slice(1);
+
+  if (!remainingPages.length) return;
+
+  resumePageObserver?.disconnect();
+
+  if ("IntersectionObserver" in window) {
+    const scrollRoot = qs(".resume-window .resume-stage");
+
+    resumePageObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const pageShell = entry.target;
+          const pageNumber = Number(pageShell.dataset.resumePage);
+
+          observer.unobserve(pageShell);
+
+          renderResumePage(
+            pdf,
+            pageNumber,
+            pageShell,
+            status,
+            totalPages
+          );
+        });
+      },
+      {
+        root: scrollRoot || null,
+        rootMargin: "700px 0px",
+        threshold: 0.01
+      }
+    );
+
+    remainingPages.forEach((pageShell) => {
+      resumePageObserver.observe(pageShell);
+    });
+
+    return;
+  }
+
+  // Older browsers: render remaining pages gradually while idle.
+  remainingPages.forEach((pageShell, index) => {
+    const renderPage = () => {
+      renderResumePage(
+        pdf,
+        Number(pageShell.dataset.resumePage),
+        pageShell,
+        status,
+        totalPages
+      );
+    };
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(renderPage, {
+        timeout: 1500 + index * 500
+      });
+    } else {
+      window.setTimeout(renderPage, 250 + index * 350);
+    }
+  });
+}
+
 function renderResumePdf() {
   if (resumeRenderPromise) return resumeRenderPromise;
 
   const container = qs("[data-resume-pages]");
   const status = qs("[data-resume-status]");
 
-  if (!container || !CONFIG.resumePdf) return Promise.resolve();
+  if (!container || !CONFIG.resumePdf) {
+    return Promise.resolve();
+  }
 
   resumeRenderPromise = (async () => {
     if (!window.pdfjsLib) {
-      createResumeFallback(container, "PDF preview library is unavailable.");
-      if (status) status.textContent = "Open the PDF to view the complete resume.";
+      createResumeFallback(
+        container,
+        "PDF preview library is unavailable."
+      );
+
+      if (status) {
+        status.textContent =
+          "Open the PDF to view the complete resume.";
+      }
+
       resumeRenderPromise = null;
       return;
     }
 
-    window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-      "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+    container.innerHTML =
+      '<div class="resume-loading">Preparing resume preview…</div>';
 
-    container.innerHTML = '<div class="resume-loading">Loading complete resume…</div>';
-    if (status) status.textContent = "Loading complete resume…";
+    if (status) {
+      status.textContent = "Preparing resume preview…";
+    }
 
     try {
-      const loadingTask = window.pdfjsLib.getDocument(CONFIG.resumePdf);
-      const pdf = await loadingTask.promise;
+      const pdf = await getResumePdfDocument();
 
       container.replaceChildren();
 
-      for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
-        const page = await pdf.getPage(pageNumber);
-        const viewport = page.getViewport({ scale: 1.35 });
-        const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+      const pageShells = [];
 
-        const pageShell = document.createElement("section");
-        pageShell.className = "resume-page-shell";
-        pageShell.setAttribute("aria-label", `Resume page ${pageNumber} of ${pdf.numPages}`);
+      for (
+        let pageNumber = 1;
+        pageNumber <= pdf.numPages;
+        pageNumber += 1
+      ) {
+        const pageShell =
+          createResumePageShell(pageNumber, pdf.numPages);
 
-        const pageLabel = document.createElement("div");
-        pageLabel.className = "resume-page-label";
-        pageLabel.textContent = `Page ${pageNumber} of ${pdf.numPages}`;
-
-        const canvas = document.createElement("canvas");
-        canvas.className = "resume-page-canvas";
-
-        canvas.width = Math.floor(viewport.width * outputScale);
-        canvas.height = Math.floor(viewport.height * outputScale);
-        canvas.style.width = `${Math.floor(viewport.width)}px`;
-        canvas.style.height = `${Math.floor(viewport.height)}px`;
-
-        const context = canvas.getContext("2d", { alpha: false });
-
-        const renderContext = {
-          canvasContext: context,
-          viewport
-        };
-
-        if (outputScale !== 1) {
-          renderContext.transform = [outputScale, 0, 0, outputScale, 0, 0];
-        }
-
-        pageShell.append(pageLabel, canvas);
+        pageShells.push(pageShell);
         container.appendChild(pageShell);
-
-        await page.render(renderContext).promise;
       }
+
+      // Page 1 is rendered immediately so the preview appears quickly.
+      await renderResumePage(
+        pdf,
+        1,
+        pageShells[0],
+        status,
+        pdf.numPages
+      );
+
+      // Pages 2+ render only as the user approaches them while scrolling.
+      observeRemainingResumePages(
+        pdf,
+        pageShells,
+        status,
+        pdf.numPages
+      );
+    } catch (error) {
+      console.error("Resume PDF preview error:", error);
+
+      createResumeFallback(
+        container,
+        "The complete embedded preview could not be loaded."
+      );
 
       if (status) {
         status.textContent =
-          `Complete resume loaded · ${pdf.numPages} page${pdf.numPages === 1 ? "" : "s"}`;
+          "Preview unavailable · use Open or Download PDF.";
       }
-    } catch (error) {
-      console.error("Resume PDF preview error:", error);
-      createResumeFallback(container, "The complete embedded preview could not be loaded.");
-      if (status) status.textContent = "Preview unavailable · use Open or Download PDF.";
+
       resumeRenderPromise = null;
     }
   })();
@@ -680,6 +909,7 @@ function wireSelectableChips() {
 function initialize() {
   configureAvatarFallbacks();
   configureLinks();
+  scheduleResumePreload();
   updateMeta();
   incrementLocalViews();
   wireDialogs();
