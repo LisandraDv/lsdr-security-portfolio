@@ -1,6 +1,6 @@
 const CONFIG = {
   email: "lisandraduvernay211221@gmail.com",
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/lisandra-duvernay-a4b738261/",
   calendar15: "https://calendly.com/lisandraduvernay211221/new-meeting",
   calendar30: "https://calendly.com/lisandraduvernay211221/30min",
   resumePdf: "./assests/resume/CV_Lisandra_Duvernay_OFC_WC.pdf",
@@ -83,9 +83,14 @@ function configureLinks() {
     }
   });
 
-  const resumeFrame = qs("[data-resume-frame]");
-  if (resumeFrame && CONFIG.resumePdf) {
-    resumeFrame.src = CONFIG.resumePdf;
+  const messageStatus = qs("[data-message-status]");
+  if (messageStatus && CONFIG.email) {
+    messageStatus.textContent = "Ready to send a message.";
+  }
+
+  const scheduleStatus = qs("[data-schedule-status]");
+  if (scheduleStatus && (CONFIG.calendar15 || CONFIG.calendar30)) {
+    scheduleStatus.textContent = "Choose a meeting length to view availability.";
   }
 
   const emailCell = qs("[data-contact-email]");
@@ -107,8 +112,112 @@ function openScheduleDialog(trigger) {
   openDialog("schedule-dialog", trigger);
 }
 
+let resumeRenderPromise = null;
+
+function createResumeFallback(container, message) {
+  container.replaceChildren();
+
+  const fallback = document.createElement("div");
+  fallback.className = "resume-fallback";
+
+  const title = document.createElement("strong");
+  title.textContent = message || "The embedded preview could not be loaded.";
+
+  const link = document.createElement("a");
+  link.className = "retro-button";
+  link.href = CONFIG.resumePdf;
+  link.target = "_blank";
+  link.rel = "noreferrer";
+  link.textContent = "Open complete PDF";
+
+  fallback.append(title, link);
+  container.appendChild(fallback);
+}
+
+function renderResumePdf() {
+  if (resumeRenderPromise) return resumeRenderPromise;
+
+  const container = qs("[data-resume-pages]");
+  const status = qs("[data-resume-status]");
+
+  if (!container || !CONFIG.resumePdf) return Promise.resolve();
+
+  resumeRenderPromise = (async () => {
+    if (!window.pdfjsLib) {
+      createResumeFallback(container, "PDF preview library is unavailable.");
+      if (status) status.textContent = "Open the PDF to view the complete resume.";
+      resumeRenderPromise = null;
+      return;
+    }
+
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+
+    container.innerHTML = '<div class="resume-loading">Loading complete resume…</div>';
+    if (status) status.textContent = "Loading complete resume…";
+
+    try {
+      const loadingTask = window.pdfjsLib.getDocument(CONFIG.resumePdf);
+      const pdf = await loadingTask.promise;
+
+      container.replaceChildren();
+
+      for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+        const page = await pdf.getPage(pageNumber);
+        const viewport = page.getViewport({ scale: 1.35 });
+        const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+
+        const pageShell = document.createElement("section");
+        pageShell.className = "resume-page-shell";
+        pageShell.setAttribute("aria-label", `Resume page ${pageNumber} of ${pdf.numPages}`);
+
+        const pageLabel = document.createElement("div");
+        pageLabel.className = "resume-page-label";
+        pageLabel.textContent = `Page ${pageNumber} of ${pdf.numPages}`;
+
+        const canvas = document.createElement("canvas");
+        canvas.className = "resume-page-canvas";
+
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+        canvas.style.width = `${Math.floor(viewport.width)}px`;
+        canvas.style.height = `${Math.floor(viewport.height)}px`;
+
+        const context = canvas.getContext("2d", { alpha: false });
+
+        const renderContext = {
+          canvasContext: context,
+          viewport
+        };
+
+        if (outputScale !== 1) {
+          renderContext.transform = [outputScale, 0, 0, outputScale, 0, 0];
+        }
+
+        pageShell.append(pageLabel, canvas);
+        container.appendChild(pageShell);
+
+        await page.render(renderContext).promise;
+      }
+
+      if (status) {
+        status.textContent =
+          `Complete resume loaded · ${pdf.numPages} page${pdf.numPages === 1 ? "" : "s"}`;
+      }
+    } catch (error) {
+      console.error("Resume PDF preview error:", error);
+      createResumeFallback(container, "The complete embedded preview could not be loaded.");
+      if (status) status.textContent = "Preview unavailable · use Open or Download PDF.";
+      resumeRenderPromise = null;
+    }
+  })();
+
+  return resumeRenderPromise;
+}
+
 function openResumeDialog(trigger) {
   openDialog("resume-dialog", trigger);
+  renderResumePdf();
 }
 
 async function shareProfile() {
