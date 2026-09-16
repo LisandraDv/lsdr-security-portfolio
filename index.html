@@ -4,474 +4,337 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Lisandra Duvernay — Cloud & Cybersecurity Engineer focused on Azure, IAM, Zero Trust, infrastructure and Microsoft security.">
-  <meta name="theme-color" content="#07111f">
-  <title>LisandraOS — Cloud & Cybersecurity Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <meta name="theme-color" content="#16243a">
+  <title>Lisandra Duvernay — Cloud & Cybersecurity Portfolio</title>
+  <link rel="stylesheet" href="./style.css?v=v3-20260916">
+  <script src="./script.js?v=v3-20260916" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="desktop-shell">
-    <header class="topbar" aria-label="Portfolio navigation">
-      <a class="brand" href="#home" aria-label="LisandraOS home">
-        <span class="brand-mark" aria-hidden="true">L</span>
-        <span>
-          <strong>LisandraOS</strong>
-          <small>Cloud Security Workspace</small>
-        </span>
-      </a>
-      <nav class="nav-tabs" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#training">Training</a>
-        <a href="#certifications">Certs</a>
-        <a href="#stack">Stack</a>
-        <button class="nav-contact js-open-contact" type="button">Contact</button>
-      </nav>
-      <div class="system-status" aria-label="Status">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span>Online</span>
+  <header class="portal-header" id="home">
+    <div class="portal-brand">
+      <strong>MyPortfolio</strong>
+      <span>a place to showcase my work</span>
+    </div>
+    <label class="profile-search" aria-label="Search this portfolio">
+      <span>⌕</span>
+      <input id="profile-search" type="search" placeholder="Search profile...">
+    </label>
+    <div class="portal-tools">
+      <button class="header-link js-open-accessibility" type="button">❔ Help</button>
+      <button class="theme-button" type="button" data-theme-toggle><span>🎨</span> Default</button>
+      <button class="sun-button" type="button" data-theme-toggle aria-label="Toggle theme">☀️</button>
+    </div>
+  </header>
+
+  <nav class="main-nav" aria-label="Primary navigation">
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#stack">Tech Stack</a>
+    <a href="#experience">Experience</a>
+    <button class="nav-button js-open-resume" type="button">Resume</button>
+    <button class="nav-button js-open-contact" type="button">Contact</button>
+    <a href="#about">About</a>
+  </nav>
+
+  <main id="main" class="page-shell">
+    <div class="profile-layout">
+      <aside class="sidebar-column">
+        <section class="retro-panel profile-card" aria-labelledby="profile-name">
+          <div class="profile-heading">
+            <h1 id="profile-name">Lisandra Duvernay</h1>
+            <p>Cloud & Cybersecurity Engineer</p>
+          </div>
+          <div class="profile-summary-grid">
+            <div class="pixel-avatar-wrap">
+              <img class="pixel-avatar" src="assets/avatar-retro.png" alt="Retro avatar for Lisandra Duvernay" data-avatar-image>
+              <div class="pixel-avatar-fallback" data-avatar-fallback>LD</div>
+            </div>
+            <div class="profile-facts">
+              <p>She/Her</p>
+              <p>Dominican Republic</p>
+              <p>Cloud · Security · Infrastructure</p>
+              <br>
+              <p>Status: <strong>Currently building secure cloud systems.</strong></p>
+              <p>Last Login: <span data-last-login>now</span></p>
+              <p>Profile Views: <span id="local-visits">1</span></p>
+            </div>
+          </div>
+          <p class="view-my">View My: <button class="text-button js-open-career" type="button">Career Archive</button></p>
+        </section>
+
+        <section class="retro-panel contacting-panel" aria-labelledby="contacting-title">
+          <div class="panel-title" id="contacting-title">Contacting Lisandra</div>
+          <div class="contact-actions-grid">
+            <button type="button" class="link-button js-open-contact">✉️ Send Message</button>
+            <button type="button" class="link-button js-open-connect">👥 Connect</button>
+            <button type="button" class="link-button js-open-schedule">💬 Schedule Call</button>
+            <button type="button" class="link-button js-open-resume">📄 View Resume</button>
+            <button type="button" class="link-button js-share-profile">↗️ Share Profile</button>
+            <button type="button" class="link-button js-save-contact">💾 Save Contact</button>
+          </div>
+        </section>
+
+        <section class="retro-panel portfolio-url-panel">
+          <div>Portfolio URL:</div>
+          <button class="plain-url js-copy-url" type="button">https://lisandradv.github.io/lsdr-security-portfolio/</button>
+          <div class="inline-status" data-share-status aria-live="polite"></div>
+        </section>
+
+        <section class="retro-panel skills-table-panel">
+          <div class="panel-title">Lisandra's Technical Skills</div>
+          <table class="skills-table">
+            <tbody>
+              <tr><th>Cloud / Azure:</th><td>Azure, Microsoft 365, Azure Policy, Monitor, Defender for Cloud</td></tr>
+              <tr><th>Identity / IAM:</th><td>Entra ID, MFA, Conditional Access, PIM, RBAC, CyberArk</td></tr>
+              <tr><th>Security:</th><td>Defender, Sentinel, Intune, Purview, WAF, vulnerability management</td></tr>
+              <tr><th>Infrastructure:</th><td>VMware, Nutanix, Citrix, Windows Server, Veeam, SQL Server</td></tr>
+              <tr><th>DevSecOps:</th><td>GitHub Actions, Terraform, Checkov, Trivy, Semgrep, Gitleaks</td></tr>
+              <tr><th>Governance:</th><td>Zero Trust, MCSB, BCDR, ISO 27001-oriented controls</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </aside>
+
+      <div class="content-column">
+        <section class="retro-panel network-banner">
+          <h2>Lisandra Duvernay is in your extended professional network.</h2>
+        </section>
+
+        <section class="retro-panel cert-home" aria-labelledby="home-certs-title">
+          <div class="panel-title" id="home-certs-title">Lisandra's Certifications & Education</div>
+          <div class="cert-home-list">
+            <div><a href="#certifications">Microsoft Azure Fundamentals — AZ-900</a><a href="#certifications">(view more)</a></div>
+            <div><a href="#certifications">Microsoft Security, Compliance & Identity — SC-900</a><a href="#certifications">(view more)</a></div>
+            <div><a href="#certifications">Fortinet Certified Fundamentals / Associate</a><a href="#certifications">(view more)</a></div>
+            <div><a href="#training">Cybersecurity Summer BootCamp — INCIBE / OAS, Spain</a><a href="#training">(view more)</a></div>
+            <div><a href="#certifications">Cybersecurity studies — ITLA</a><a href="#certifications">(view more)</a></div>
+            <div><a href="#training">International security training & community programs</a><a href="#training">(view more)</a></div>
+          </div>
+        </section>
+
+        <section id="about" class="retro-panel professional-profile" aria-labelledby="about-title">
+          <div class="panel-title">Lisandra's Professional Profile</div>
+          <div class="panel-content prose">
+            <h3 id="about-title">About Me</h3>
+            <p>I’m a Cloud & Cybersecurity Engineer with 3+ years of experience across cloud infrastructure, Microsoft security, identity, endpoint protection and hybrid environments. Day to day, I move between Azure administration, IAM, Zero Trust, governance, security hardening, monitoring and infrastructure operations.</p>
+            <p>I enjoy translating security requirements into practical controls, documentation and repeatable processes. I also build hands-on labs and projects around cloud security, DevSecOps, application security and secure infrastructure.</p>
+            <p>Outside daily operations, I’m constantly learning — through certification paths, international cybersecurity programs, technical events and my own labs.</p>
+            <h3>Interests</h3>
+            <div class="interest-grid">
+              <span>☁️ Azure</span><span>🔐 IAM</span><span>🛡️ Security</span><span>🖥️ Infrastructure</span>
+              <span>⚙️ Automation</span><span>🌐 Hybrid Cloud</span><span>📊 Governance</span><span>💜 Open Source</span>
+            </div>
+            <h3>Built With</h3>
+            <div class="built-with-row"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span></div>
+          </div>
+        </section>
       </div>
-    </header>
+    </div>
 
-    <main id="main">
-      <section id="home" class="hero section-space" aria-labelledby="hero-title">
-        <div class="window hero-window">
-          <div class="titlebar">
-            <div class="titlebar-title">
-              <span aria-hidden="true">☁</span>
-              <span>profile.exe</span>
-            </div>
-            <div class="window-controls" aria-hidden="true">
-              <span>—</span><span>□</span><span>×</span>
-            </div>
-          </div>
-
-          <div class="hero-content">
-            <div class="profile-block">
-              <div class="avatar-frame" aria-label="Profile photo placeholder">
-                <div class="avatar-placeholder" aria-hidden="true">LD</div>
-                <span class="avatar-status" title="Online"></span>
-              </div>
-              <div class="profile-copy">
-                <p class="eyebrow">HELLO, I’M</p>
-                <h1 id="hero-title">Lisandra Duvernay</h1>
-                <p class="hero-role">Cloud & Cybersecurity Engineer</p>
-                <p class="hero-summary">
-                  I build, secure and operate cloud and hybrid environments with a focus on Azure,
-                  identity, Zero Trust and resilient infrastructure.
-                </p>
-                <div class="hero-chips" aria-label="Focus areas">
-                  <span>Azure</span><span>Cloud Security</span><span>IAM</span><span>Zero Trust</span><span>Infrastructure</span>
-                </div>
-                <div class="hero-actions">
-                  <a class="button button-primary" href="#projects">View Projects</a>
-                  <a class="button" href="https://github.com/LisandraDv" target="_blank" rel="noreferrer">GitHub</a>
-                  <a class="button" href="#training">Training Archive</a>
-                  <button class="button js-open-contact" type="button">Send Message</button>
-                </div>
-              </div>
-            </div>
-
-            <aside class="profile-sidebar" aria-label="Current professional status">
-              <div class="mini-panel">
-                <div class="mini-panel-title">CURRENT STATUS</div>
-                <dl class="status-list">
-                  <div><dt>Experience</dt><dd>3+ years</dd></div>
-                  <div><dt>Focus</dt><dd>Cloud + Security</dd></div>
-                  <div><dt>Mode</dt><dd>Build / Secure / Learn</dd></div>
-                  <div><dt>Availability</dt><dd><span class="status-dot tiny"></span> Connect</dd></div>
-                </dl>
-              </div>
-              <div class="mini-panel now-panel">
-                <div class="mini-panel-title">NOW PLAYING</div>
-                <p><strong>Azure Architecture</strong></p>
-                <p>Cloud security, IAM, governance, hybrid infrastructure and practical security projects.</p>
-              </div>
-            </aside>
-          </div>
+    <section id="training" class="retro-panel wide-panel training-section" aria-labelledby="training-title">
+      <div class="panel-title">Lisandra's Education & Training Memories</div>
+      <div class="panel-content">
+        <div class="section-intro">
+          <div><h2 id="training-title">Education & Training</h2><p>International programs, bootcamps and technical learning — with space for real event photos.</p></div>
+          <span class="achievement">🏆 EXPERIENCE UNLOCKED</span>
         </div>
-
-        <div class="desktop-icons" aria-label="Quick access">
-          <a href="#projects" class="desktop-icon"><span aria-hidden="true">📁</span><span>Projects</span></a>
-          <a href="#training" class="desktop-icon"><span aria-hidden="true">📸</span><span>Training</span></a>
-          <a href="#certifications" class="desktop-icon"><span aria-hidden="true">🏆</span><span>Certifications</span></a>
-          <a href="#stack" class="desktop-icon"><span aria-hidden="true">🧰</span><span>My Stack</span></a>
-        </div>
-      </section>
-
-      <section id="about" class="section-space" aria-labelledby="about-title">
-        <div class="section-heading">
-          <p class="eyebrow">01 / PROFILE</p>
-          <h2 id="about-title">What I do</h2>
-          <p>I work where cloud infrastructure, identity and security meet.</p>
-        </div>
-
-        <div class="capability-grid">
-          <article class="window capability-card">
-            <div class="titlebar compact"><div class="titlebar-title"><span>☁</span><span>Cloud & Infrastructure</span></div></div>
-            <div class="card-body">
-              <p>Azure, hybrid cloud, Windows Server, virtualization and resilient infrastructure operations.</p>
-              <div class="tag-row"><span>Azure</span><span>VMware</span><span>Nutanix</span><span>Citrix</span></div>
-            </div>
+        <div class="training-memory-grid">
+          <article class="training-memory-card">
+            <div class="training-photo-placeholder"><span>🇪🇸</span><small>Add Spain photo</small></div>
+            <div class="training-memory-copy"><h3>INCIBE / OAS Cybersecurity BootCamp</h3><p>León, Spain · 2025</p><small>International cybersecurity training</small></div>
+            <button class="retro-button js-training" type="button" data-title="INCIBE / OAS Cybersecurity BootCamp" data-provider="INCIBE / OAS" data-location="León, Spain · 2025" data-description="International cybersecurity bootcamp and practical learning experience." data-images="">View Memories</button>
           </article>
-          <article class="window capability-card">
-            <div class="titlebar compact"><div class="titlebar-title"><span>🔐</span><span>Identity & Zero Trust</span></div></div>
-            <div class="card-body">
-              <p>Identity protection, least privilege and secure access across Microsoft environments.</p>
-              <div class="tag-row"><span>Entra ID</span><span>PIM</span><span>RBAC</span><span>Conditional Access</span></div>
-            </div>
+          <article class="training-memory-card">
+            <div class="training-photo-placeholder"><span>🇵🇦</span><small>Add Panama photo</small></div>
+            <div class="training-memory-copy"><h3>Cybersecurity / STIC Event</h3><p>Panama · 2025</p><small>Security community & technical event</small></div>
+            <button class="retro-button js-training" type="button" data-title="Cybersecurity / STIC Event" data-provider="STIC / cybersecurity community" data-location="Panama · 2025" data-description="Technical cybersecurity event focused on community, security and technology." data-images="">View Memories</button>
           </article>
-          <article class="window capability-card">
-            <div class="titlebar compact"><div class="titlebar-title"><span>🛡</span><span>Security Engineering</span></div></div>
-            <div class="card-body">
-              <p>Endpoint security, detection, monitoring, hardening and cloud security posture improvement.</p>
-              <div class="tag-row"><span>Defender</span><span>Sentinel</span><span>Intune</span><span>Purview</span></div>
-            </div>
+          <article class="training-memory-card">
+            <div class="training-photo-placeholder"><span>☁️</span><small>Add cloud training photo</small></div>
+            <div class="training-memory-copy"><h3>AWS Security Training</h3><p>Cloud security / tabletop exercise</p><small>Cloud resilience & incident response</small></div>
+            <button class="retro-button js-training" type="button" data-title="AWS Security Training" data-provider="AWS" data-location="Technical training" data-description="Cloud security and resilience-focused technical learning." data-images="">View Memories</button>
           </article>
-          <article class="window capability-card">
-            <div class="titlebar compact"><div class="titlebar-title"><span>⚙</span><span>Architecture & Governance</span></div></div>
-            <div class="card-body">
-              <p>Security baselines, cloud governance, policy controls, documentation and BCDR thinking.</p>
-              <div class="tag-row"><span>Azure Policy</span><span>MCSB</span><span>BCDR</span><span>ISO 27001</span></div>
-            </div>
+          <article class="training-memory-card">
+            <div class="training-photo-placeholder"><span>🛡️</span><small>Add security training photo</small></div>
+            <div class="training-memory-copy"><h3>Fortinet / Cisco Security Training</h3><p>Cybersecurity & operations</p><small>Defensive security, CyberOps and technical learning</small></div>
+            <button class="retro-button js-training" type="button" data-title="Fortinet / Cisco Security Training" data-provider="Fortinet / Cisco" data-location="Technical training" data-description="Cybersecurity and security operations learning focused on practical defensive concepts." data-images="">View Memories</button>
           </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="projects" class="section-space" aria-labelledby="projects-title">
-        <div class="section-heading heading-with-action">
-          <div>
-            <p class="eyebrow">02 / PROJECT EXPLORER</p>
-            <h2 id="projects-title">Featured security projects</h2>
-            <p>Hands-on labs focused on prevention, hardening, detection and remediation.</p>
-          </div>
-          <a class="button small" href="https://github.com/LisandraDv/lsdr-security-portfolio" target="_blank" rel="noreferrer">Open repository ↗</a>
+    <section id="projects" class="retro-panel wide-panel" aria-labelledby="projects-title">
+      <div class="panel-title">Project Explorer — Security Lab</div>
+      <div class="panel-content">
+        <div class="section-intro"><div><h2 id="projects-title">Featured Projects</h2><p>Hands-on labs focused on prevention, hardening, detection and remediation.</p></div><a class="retro-button" href="https://github.com/LisandraDv/lsdr-security-portfolio" target="_blank" rel="noreferrer">Open Repository</a></div>
+        <div class="project-list">
+          <article class="project-row"><div class="project-folder">📁</div><div><h3>01 — Secure Code, SCA, SAST & Secret Detection</h3><p>Detect insecure code, vulnerable dependencies and exposed secrets before deployment.</p><small>Semgrep · Gitleaks · Trivy · GitHub Actions</small></div><button class="text-button js-project" type="button" data-title="Secure Code, SCA, SAST & Secret Detection" data-objective="Prevent vulnerable dependencies, insecure code patterns and exposed secrets from reaching production." data-tools="GitHub Actions · Semgrep · Gitleaks · Trivy · OWASP Dependency-Check" data-path="01-secure-code-sca-sast-secret-detection/">(view more)</button></article>
+          <article class="project-row"><div class="project-folder">📁</div><div><h3>02 — IaC Security & Policy as Code</h3><p>Validate Azure infrastructure definitions before resources are provisioned.</p><small>Terraform · Checkov · tfsec · Azure Policy</small></div><button class="text-button js-project" type="button" data-title="Infrastructure as Code Security & Policy as Code" data-objective="Reduce cloud misconfigurations by applying IaC security checks and Policy as Code before deployment." data-tools="Terraform · Checkov · tfsec · Azure Policy · GitHub Actions" data-path="02-iac-security-policy-as-code/">(view more)</button></article>
+          <article class="project-row"><div class="project-folder">📁</div><div><h3>03 — Container & Kubernetes Security</h3><p>Assess container images, registries, workloads and runtime security.</p><small>Docker · Kubernetes · Trivy</small></div><button class="text-button js-project" type="button" data-title="Container & Kubernetes Security" data-objective="Explore practical container and Kubernetes security controls across build and runtime stages." data-tools="Docker · Kubernetes · Trivy · security scanning" data-path="03-container-kubernetes-security/">(view more)</button></article>
+          <article class="project-row"><div class="project-folder">📁</div><div><h3>04 — DAST & Continuous Security Monitoring</h3><p>Runtime testing and security observability for deployed applications.</p><small>DAST · Monitoring · Detection</small></div><button class="text-button js-project" type="button" data-title="DAST & Continuous Security Monitoring" data-objective="Combine dynamic testing with continuous visibility to identify application security issues in runtime contexts." data-tools="DAST · monitoring · security reporting" data-path="04-dast-continuous-security-monitoring/">(view more)</button></article>
+          <article class="project-row"><div class="project-folder">📁</div><div><h3>05 — Azure & Microsoft 365 Security Hardening</h3><p>Strengthen identity, access, security baselines and monitoring controls.</p><small>Azure · M365 · Entra ID · Defender</small></div><button class="text-button js-project" type="button" data-title="Cloud Security Hardening — Azure & Microsoft 365" data-objective="Review and strengthen cloud identity, access, hardening and monitoring controls across Microsoft environments." data-tools="Azure · Microsoft 365 · Entra ID · Defender · governance controls" data-path="05-cloud-security-hardening-azure-m365/">(view more)</button></article>
         </div>
+      </div>
+    </section>
 
-        <div class="window explorer-window">
-          <div class="titlebar">
-            <div class="titlebar-title"><span aria-hidden="true">📁</span><span>C:\Lisandra\Security-Lab\Projects</span></div>
-            <div class="window-controls" aria-hidden="true"><span>—</span><span>□</span><span>×</span></div>
-          </div>
-          <div class="explorer-toolbar" aria-hidden="true">
-            <span>←</span><span>→</span><span>↑</span><div class="address-bar">github.com/LisandraDv/lsdr-security-portfolio</div>
-          </div>
-          <div class="project-grid">
-            <article class="project-card">
-              <div class="project-icon" aria-hidden="true">🔎</div>
-              <div class="project-meta"><span>01</span><span class="project-status">LAB</span></div>
-              <h3>Secure Code & Secret Detection</h3>
-              <p>SCA, SAST, secret detection and CI/CD security checks before deployment.</p>
-              <div class="tag-row"><span>Semgrep</span><span>Gitleaks</span><span>Trivy</span><span>GitHub Actions</span></div>
-              <div class="project-actions">
-                <button class="text-link js-project" type="button"
-                  data-title="Secure Code, SCA, SAST & Secret Detection"
-                  data-objective="Prevent vulnerable dependencies, insecure code patterns and exposed secrets from reaching production."
-                  data-tools="GitHub Actions · Semgrep · Gitleaks · Trivy · OWASP Dependency-Check"
-                  data-path="01-secure-code-sca-sast-secret-detection/">Details</button>
-                <a href="https://github.com/LisandraDv/lsdr-security-portfolio/tree/main/01-secure-code-sca-sast-secret-detection/" target="_blank" rel="noreferrer">Open project →</a>
-              </div>
-            </article>
+    <section id="experience" class="retro-panel wide-panel" aria-labelledby="experience-title">
+      <div class="panel-title">career.log — Professional Experience</div>
+      <div class="panel-content timeline">
+        <h2 id="experience-title">Experience</h2>
+        <article><time>2025–Present</time><div><h3>Cloud, Infrastructure & Cybersecurity</h3><p>Azure administration, Microsoft security, identity, endpoint security, governance, monitoring, cloud architecture and hybrid infrastructure.</p></div></article>
+        <article><time>2026</time><div><h3>Private / Hybrid Cloud Infrastructure</h3><p>VMware, Nutanix, Citrix, Azure and privileged access technologies supporting enterprise infrastructure.</p></div></article>
+        <article><time>Earlier</time><div><h3>Infrastructure Administration & Cloud/DevOps</h3><p>Windows Server, VMware, IIS, SQL Server, WSUS, Veeam, Azure/AWS and infrastructure operations.</p></div></article>
+      </div>
+    </section>
 
-            <article class="project-card">
-              <div class="project-icon" aria-hidden="true">🏗</div>
-              <div class="project-meta"><span>02</span><span class="project-status">AZURE</span></div>
-              <h3>IaC Security & Policy as Code</h3>
-              <p>Find cloud misconfigurations before provisioning and validate Azure controls early.</p>
-              <div class="tag-row"><span>Terraform</span><span>Checkov</span><span>tfsec</span><span>Azure Policy</span></div>
-              <div class="project-actions">
-                <button class="text-link js-project" type="button"
-                  data-title="Infrastructure as Code Security & Policy as Code"
-                  data-objective="Review and validate cloud infrastructure definitions before deployment to reduce Azure misconfigurations."
-                  data-tools="Terraform · Checkov · tfsec · Azure Policy · GitHub Actions · Microsoft Azure"
-                  data-path="02-iac-security-policy-as-code/">Details</button>
-                <a href="https://github.com/LisandraDv/lsdr-security-portfolio/tree/main/02-iac-security-policy-as-code/" target="_blank" rel="noreferrer">Open project →</a>
-              </div>
-            </article>
+    <section id="certifications" class="retro-panel wide-panel" aria-labelledby="certifications-title">
+      <div class="panel-title">Certifications & Education</div>
+      <div class="panel-content certification-list">
+        <h2 id="certifications-title">Credentials</h2>
+        <p><strong>Microsoft Azure Fundamentals — AZ-900</strong><span>Completed</span></p>
+        <p><strong>Microsoft Security, Compliance & Identity Fundamentals — SC-900</strong><span>Completed</span></p>
+        <p><strong>Fortinet Certified Fundamentals</strong><span>Completed</span></p>
+        <p><strong>Fortinet Certified Associate</strong><span>Completed</span></p>
+        <p><strong>Scrum Foundations Certified Expert</strong><span>Completed</span></p>
+        <p><strong>Cybersecurity studies — ITLA</strong><span>Technical education</span></p>
+      </div>
+    </section>
 
-            <article class="project-card">
-              <div class="project-icon" aria-hidden="true">📦</div>
-              <div class="project-meta"><span>03</span><span class="project-status">CONTAINERS</span></div>
-              <h3>Container & Kubernetes Security</h3>
-              <p>Assess container images, registries, workloads and Kubernetes runtime security.</p>
-              <div class="tag-row"><span>Containers</span><span>Kubernetes</span><span>Security</span></div>
-              <div class="project-actions">
-                <button class="text-link js-project" type="button"
-                  data-title="Container & Kubernetes Security"
-                  data-objective="Assess container images, registries, workloads and runtime security with a remediation-first approach."
-                  data-tools="Container Security · Kubernetes · Vulnerability Assessment"
-                  data-path="03-container-kubernetes-security/">Details</button>
-                <a href="https://github.com/LisandraDv/lsdr-security-portfolio/tree/main/03-container-kubernetes-security/" target="_blank" rel="noreferrer">Open project →</a>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-icon" aria-hidden="true">📡</div>
-              <div class="project-meta"><span>04</span><span class="project-status">DAST</span></div>
-              <h3>DAST & Continuous Monitoring</h3>
-              <p>Runtime application testing paired with observability and continuous security monitoring.</p>
-              <div class="tag-row"><span>DAST</span><span>Monitoring</span><span>Observability</span></div>
-              <div class="project-actions">
-                <button class="text-link js-project" type="button"
-                  data-title="DAST & Continuous Security Monitoring"
-                  data-objective="Perform runtime application testing and improve observability to surface security issues continuously."
-                  data-tools="DAST · Continuous Monitoring · Security Observability"
-                  data-path="04-dast-continuous-security-monitoring/">Details</button>
-                <a href="https://github.com/LisandraDv/lsdr-security-portfolio/tree/main/04-dast-continuous-security-monitoring/" target="_blank" rel="noreferrer">Open project →</a>
-              </div>
-            </article>
-
-            <article class="project-card featured-project">
-              <div class="project-icon" aria-hidden="true">☁</div>
-              <div class="project-meta"><span>05</span><span class="project-status">CLOUD</span></div>
-              <h3>Azure & Microsoft 365 Hardening</h3>
-              <p>Strengthen identity, access, security baselines, monitoring and cloud security posture.</p>
-              <div class="tag-row"><span>Azure</span><span>Microsoft 365</span><span>IAM</span><span>Hardening</span></div>
-              <div class="project-actions">
-                <button class="text-link js-project" type="button"
-                  data-title="Cloud Security Hardening — Azure & Microsoft 365"
-                  data-objective="Review and strengthen cloud identity, access, security baselines and monitoring controls."
-                  data-tools="Azure · Microsoft 365 · Entra ID · Security Baselines · Monitoring"
-                  data-path="05-cloud-security-hardening-azure-m365/">Details</button>
-                <a href="https://github.com/LisandraDv/lsdr-security-portfolio/tree/main/05-cloud-security-hardening-azure-m365/" target="_blank" rel="noreferrer">Open project →</a>
-              </div>
-            </article>
-          </div>
+    <section id="stack" class="retro-panel wide-panel" aria-labelledby="stack-title">
+      <div class="panel-title">Languages & Tools — Cloud Security Edition</div>
+      <div class="panel-content">
+        <h2 id="stack-title">Tech Stack</h2>
+        <div class="stack-cloud" aria-label="Technology stack">
+          <span class="xl">Azure</span><span class="lg">Entra ID</span><span class="xl">Defender</span><span class="md">Intune</span><span class="lg">Sentinel</span><span class="md">Purview</span><span class="lg">VMware</span><span class="md">Nutanix</span><span class="lg">Citrix</span><span class="md">CyberArk</span><span class="lg">Terraform</span><span class="md">Docker</span><span class="sm">GitHub Actions</span><span class="md">Windows Server</span><span class="sm">SQL Server</span><span class="md">PowerShell</span>
         </div>
-      </section>
+      </div>
+    </section>
+  </main>
 
-      <section id="experience" class="section-space" aria-labelledby="experience-title">
-        <div class="section-heading">
-          <p class="eyebrow">03 / SYSTEM ACTIVITY LOG</p>
-          <h2 id="experience-title">Experience</h2>
-          <p>A cloud-first path built from infrastructure, operations and security.</p>
-        </div>
+  <footer class="retro-footer"><span>LisandraOS / MyPortfolio</span><span>© <span id="current-year"></span> Lisandra Duvernay</span></footer>
 
-        <div class="window log-window">
-          <div class="titlebar"><div class="titlebar-title"><span>▣</span><span>career.log</span></div><div class="window-controls" aria-hidden="true"><span>—</span><span>□</span><span>×</span></div></div>
-          <ol class="timeline">
-            <li>
-              <div class="timeline-marker">NOW</div>
-              <div class="timeline-content">
-                <span class="log-time">CURRENT FOCUS</span>
-                <h3>Cloud Infrastructure & Security</h3>
-                <p>Azure, Microsoft 365, Entra ID, Intune, Defender, governance, identity security, endpoint controls, monitoring and technical documentation.</p>
-                <div class="tag-row"><span>Azure</span><span>Entra ID</span><span>Intune</span><span>Defender</span><span>Zero Trust</span></div>
-              </div>
-            </li>
-            <li>
-              <div class="timeline-marker">HYB</div>
-              <div class="timeline-content">
-                <span class="log-time">HYBRID / PRIVATE CLOUD</span>
-                <h3>Infrastructure Operations</h3>
-                <p>Hands-on work across virtualization and hybrid environments, including VMware, Nutanix, Citrix Cloud, Azure and privileged access tooling.</p>
-                <div class="tag-row"><span>VMware</span><span>Nutanix</span><span>Citrix</span><span>CyberArk</span></div>
-              </div>
-            </li>
-            <li>
-              <div class="timeline-marker">INF</div>
-              <div class="timeline-content">
-                <span class="log-time">INFRASTRUCTURE FOUNDATION</span>
-                <h3>Systems Administration & Cloud Operations</h3>
-                <p>Windows Server, Veeam, WSUS, IIS, SQL Server, virtualization, cloud operations and security hardening.</p>
-                <div class="tag-row"><span>Windows Server</span><span>Veeam</span><span>IIS</span><span>SQL Server</span></div>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </section>
+  <button class="accessibility-fab js-open-accessibility" type="button" aria-label="Open accessibility options" title="Accessibility options">♿</button>
 
-      <section id="training" class="section-space" aria-labelledby="training-title">
-        <div class="section-heading heading-with-action">
-          <div>
-            <p class="eyebrow">04 / TRAINING ARCHIVE</p>
-            <h2 id="training-title">Training & events</h2>
-            <p>Technical learning, international programs and moments worth keeping.</p>
-          </div>
-          <span class="achievement-badge">🏆 EXPERIENCE UNLOCKED</span>
-        </div>
-
-        <div class="window training-window">
-          <div class="titlebar"><div class="titlebar-title"><span>📸</span><span>Training Archive</span></div><div class="window-controls" aria-hidden="true"><span>—</span><span>□</span><span>×</span></div></div>
-          <div class="folder-path"><span>My Computer</span><span>›</span><span>Career</span><span>›</span><strong>Training & Events</strong></div>
-          <div class="training-grid">
-            <article class="training-card">
-              <div class="training-preview spain-preview" aria-hidden="true"><span>🇪🇸</span><small>PHOTO ALBUM</small></div>
-              <div class="training-card-body">
-                <div class="training-kicker">INTERNATIONAL TRAINING · 2025</div>
-                <h3>Cybersecurity Summer BootCamp</h3>
-                <p><strong>INCIBE / OAS</strong> · León, Spain</p>
-                <p>International cybersecurity training focused on practical security topics and professional development.</p>
-                <button class="button small js-training" type="button"
-                  data-title="Cybersecurity Summer BootCamp"
-                  data-provider="INCIBE / OAS"
-                  data-location="León, Spain · 2025"
-                  data-description="International cybersecurity training and hands-on learning experience. Replace the sample gallery with 3–6 shareable event photos."
-                  data-images="">View memories</button>
-              </div>
-            </article>
-
-            <article class="training-card">
-              <div class="training-preview panama-preview" aria-hidden="true"><span>🇵🇦</span><small>PHOTO ALBUM</small></div>
-              <div class="training-card-body">
-                <div class="training-kicker">CYBERSECURITY COMMUNITY</div>
-                <h3>STIC / Cybersecurity Event</h3>
-                <p><strong>Technical Event</strong> · Panama</p>
-                <p>Cybersecurity community, technical sessions and international networking.</p>
-                <button class="button small js-training" type="button"
-                  data-title="STIC / Cybersecurity Event"
-                  data-provider="Cybersecurity Community"
-                  data-location="Panama"
-                  data-description="Technical sessions, cybersecurity community and professional networking. Add your favorite shareable photos here."
-                  data-images="">View memories</button>
-              </div>
-            </article>
-
-            <article class="training-card compact-training">
-              <div class="training-symbol" aria-hidden="true">🌐</div>
-              <div><div class="training-kicker">2026</div><h3>ITU Her CyberTracks</h3><p>Incident response, mentorship and cybersecurity career development.</p></div>
-            </article>
-            <article class="training-card compact-training">
-              <div class="training-symbol" aria-hidden="true">🛡</div>
-              <div><div class="training-kicker">2025</div><h3>Cisco CyberOps & Ethical Hacker</h3><p>Security operations, attack techniques and defensive cybersecurity fundamentals.</p></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="certifications" class="section-space" aria-labelledby="certifications-title">
-        <div class="section-heading">
-          <p class="eyebrow">05 / ACHIEVEMENTS</p>
-          <h2 id="certifications-title">Certifications</h2>
-          <p>Credentials that support my cloud, security and collaboration foundation.</p>
-        </div>
-        <div class="cert-grid">
-          <article class="cert-card"><div class="cert-logo">MS</div><div><span>Microsoft</span><h3>Azure Fundamentals</h3><p>AZ-900 · Completed</p></div></article>
-          <article class="cert-card"><div class="cert-logo">MS</div><div><span>Microsoft</span><h3>Security, Compliance & Identity Fundamentals</h3><p>SC-900 · Completed</p></div></article>
-          <article class="cert-card"><div class="cert-logo">FT</div><div><span>Fortinet</span><h3>Certified Fundamentals</h3><p>Cybersecurity · Completed</p></div></article>
-          <article class="cert-card"><div class="cert-logo">FT</div><div><span>Fortinet</span><h3>Certified Associate</h3><p>Cybersecurity · Completed</p></div></article>
-          <article class="cert-card"><div class="cert-logo">SF</div><div><span>CertiProf</span><h3>Scrum Foundations Certified Expert</h3><p>SFCE · Completed</p></div></article>
-        </div>
-      </section>
-
-      <section id="stack" class="section-space" aria-labelledby="stack-title">
-        <div class="section-heading">
-          <p class="eyebrow">06 / TOOLBOX</p>
-          <h2 id="stack-title">My stack</h2>
-          <p>Organized by what I use the technology to accomplish.</p>
-        </div>
-        <div class="stack-grid">
-          <article class="skill-group"><h3>☁ Cloud & Infrastructure</h3><div class="skill-cloud"><span>Azure</span><span>Windows Server</span><span>VMware</span><span>Nutanix</span><span>Citrix Cloud</span><span>Veeam</span><span>SQL Server</span></div></article>
-          <article class="skill-group"><h3>🔐 Identity & Access</h3><div class="skill-cloud"><span>Entra ID</span><span>Conditional Access</span><span>MFA</span><span>RBAC</span><span>PIM</span><span>CyberArk</span></div></article>
-          <article class="skill-group"><h3>🛡 Microsoft Security</h3><div class="skill-cloud"><span>Defender</span><span>Sentinel</span><span>Intune</span><span>Purview</span><span>Defender for Cloud</span><span>MCSB</span></div></article>
-          <article class="skill-group"><h3>⚙ DevSecOps & Automation</h3><div class="skill-cloud"><span>GitHub Actions</span><span>Terraform</span><span>Docker</span><span>PowerShell</span><span>Python</span><span>Policy as Code</span></div></article>
-          <article class="skill-group"><h3>📡 Security Operations</h3><div class="skill-cloud"><span>WAF</span><span>Elastic</span><span>Splunk</span><span>Vulnerability Management</span><span>Monitoring</span><span>Incident Response</span></div></article>
-        </div>
-      </section>
-
-      <section id="contact" class="section-space contact-section" aria-labelledby="contact-title">
-        <div class="window contact-window">
-          <div class="titlebar"><div class="titlebar-title"><span>💬</span><span>Instant Message</span></div><div class="window-controls" aria-hidden="true"><span>—</span><span>□</span><span>×</span></div></div>
-          <div class="contact-content">
-            <div>
-              <p class="eyebrow">07 / CONNECT</p>
-              <h2 id="contact-title">Want to talk cloud or security?</h2>
-              <p>I’m always interested in learning, collaborating and connecting with people working in cloud, infrastructure and cybersecurity.</p>
-            </div>
-            <div class="contact-actions">
-              <a class="button button-primary" href="https://github.com/LisandraDv" target="_blank" rel="noreferrer">GitHub</a>
-              <button class="button js-open-contact" type="button">Open message window</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <span>LisandraOS <span id="current-year"></span></span>
-      <span>Built for GitHub Pages · Cloud & Cybersecurity</span>
-    </footer>
-  </div>
-
-  <div class="taskbar" aria-hidden="true">
-    <div class="start-button"><span>☁</span><strong>LisandraOS</strong></div>
-    <div class="taskbar-app">▣ portfolio.exe</div>
-    <div class="taskbar-tray"><span class="status-dot tiny"></span><span id="taskbar-time">--:--</span></div>
-  </div>
-
-  <dialog id="project-dialog" class="retro-dialog">
+  <dialog id="contact-dialog" class="win-dialog">
     <div class="dialog-window">
-      <div class="titlebar">
-        <div class="titlebar-title"><span>📁</span><span>Project Details</span></div>
-        <button class="window-close js-close-dialog" type="button" aria-label="Close project details">×</button>
-      </div>
-      <div class="dialog-body">
-        <p class="eyebrow">PROJECT FILE</p>
-        <h2 data-project-title>Project</h2>
-        <div class="dialog-detail"><strong>Objective</strong><p data-project-objective></p></div>
-        <div class="dialog-detail"><strong>Tools / Focus</strong><p data-project-tools></p></div>
-        <div class="dialog-actions">
-          <a class="button button-primary" data-project-link href="#">Open project</a>
-          <button class="button js-close-dialog" type="button">Close</button>
-        </div>
-      </div>
+      <div class="win-titlebar"><span>💬 Instant Message — Lisandra Duvernay</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
+      <div class="messenger-profile"><div class="mini-avatar"><img src="assets/avatar-retro.png" alt="Retro avatar" data-avatar-image><span data-avatar-fallback>LD</span></div><div><strong>Lisandra Duvernay</strong><p class="online-text">● Online</p><small>Cloud & Cybersecurity Engineer</small><p>Status: securing cloud environments and occasionally breaking labs on purpose.</p></div></div>
+      <form class="xp-form" id="message-form">
+        <label>Your Name <span>(required)</span><input name="name" required></label>
+        <label>Your Email <span>(required)</span><input name="email" type="email" required></label>
+        <label>Message <span>(required)</span><textarea name="message" rows="6" required></textarea></label>
+        <div class="dialog-actions"><button class="xp-primary" type="submit">Send IM</button><button class="xp-button js-close-dialog" type="button">Cancel</button></div>
+        <p class="dialog-status" data-message-status aria-live="polite"></p>
+      </form>
+      <div class="xp-statusbar"><span>Online</span><span>Connected</span></div>
     </div>
   </dialog>
 
-  <dialog id="training-dialog" class="retro-dialog training-dialog">
-    <div class="dialog-window">
-      <div class="titlebar">
-        <div class="titlebar-title"><span>📸</span><span>Training Viewer</span></div>
-        <button class="window-close js-close-dialog" type="button" aria-label="Close training viewer">×</button>
+  <dialog id="connect-dialog" class="win-dialog">
+    <div class="dialog-window small-window">
+      <div class="win-titlebar"><span>👥 Add to Network</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
+      <div class="dialog-padding">
+        <div class="messenger-profile compact-profile"><div class="mini-avatar"><img src="assets/avatar-retro.png" alt="Retro avatar" data-avatar-image><span data-avatar-fallback>LD</span></div><div><strong>Lisandra Duvernay</strong><small>Cloud & Cybersecurity Engineer</small><p class="online-text">● Online</p></div></div>
+        <p>Lisandra is in your extended professional network.</p><p><strong>Would you like to connect with Lisandra?</strong></p><p class="muted-italic">Continues on LinkedIn — this site cannot send a connection request.</p>
       </div>
-      <div class="dialog-body">
-        <div class="achievement-inline">🏆 EXPERIENCE UNLOCKED</div>
-        <h2 data-training-title>Training</h2>
-        <p class="training-location"><strong data-training-provider></strong> · <span data-training-location></span></p>
-        <div class="gallery-stage" data-gallery-stage>
-          <div class="gallery-placeholder">
-            <span aria-hidden="true">🖼</span>
-            <strong>Your training photos go here</strong>
-            <small>Add 3–6 images in <code>assets/training/</code>, then list them in the button’s <code>data-images</code>.</small>
-          </div>
-        </div>
-        <div class="gallery-controls" data-gallery-controls hidden>
-          <button class="button small" type="button" data-gallery-prev>← Previous</button>
-          <span data-gallery-counter>1 / 1</span>
-          <button class="button small" type="button" data-gallery-next>Next →</button>
-        </div>
-        <p data-training-description></p>
-        <div class="dialog-actions"><button class="button js-close-dialog" type="button">Close archive</button></div>
-      </div>
+      <div class="dialog-actions footer-actions"><a class="xp-primary is-config-link" data-linkedin-link href="#">View LinkedIn</a><button class="xp-button js-close-dialog" type="button">Cancel</button></div>
     </div>
   </dialog>
 
-  <dialog id="contact-dialog" class="retro-dialog contact-dialog">
-    <div class="dialog-window">
-      <div class="titlebar">
-        <div class="titlebar-title"><span>💬</span><span>Instant Message — Lisandra</span></div>
-        <button class="window-close js-close-dialog" type="button" aria-label="Close contact window">×</button>
+  <dialog id="schedule-dialog" class="win-dialog">
+    <div class="dialog-window medium-window">
+      <div class="win-titlebar"><span>📅 Schedule a Call — Lisandra Duvernay</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
+      <div class="subtoolbar"><span>📄 Appointment</span><span>|</span><span>◷ Availability</span></div>
+      <div class="dialog-padding schedule-body">
+        <table class="appointment-table"><tbody><tr><th>With:</th><td>Lisandra Duvernay</td></tr><tr><th>Subject:</th><td>Intro / Portfolio Chat</td></tr><tr><th>Location:</th><td>Online</td></tr><tr><th>Organizer:</th><td>Lisandra Duvernay</td></tr><tr><th>Availability:</th><td>Online scheduling</td></tr><tr><th>Duration:</th><td>— select below —</td></tr><tr><th>Status:</th><td><em>Available times provided by your scheduling link</em></td></tr></tbody></table>
+        <h3>Choose a meeting length:</h3>
+        <label class="meeting-option"><input type="radio" name="meeting-length" value="15" checked><span><strong>◷ 15 Minutes</strong><small>Quick intro, portfolio discussion, or question.</small></span></label>
+        <label class="meeting-option"><input type="radio" name="meeting-length" value="30"><span><strong>◷ 30 Minutes</strong><small>Longer conversation about cloud, security, opportunities, projects, or technical topics.</small></span></label>
+        <p class="dialog-status" data-schedule-status aria-live="polite"></p>
       </div>
-      <div class="dialog-body">
-        <div class="im-profile">
-          <div class="im-avatar">LD</div>
-          <div><strong>Lisandra Duvernay</strong><p><span class="status-dot tiny"></span> Online · Cloud & Cybersecurity Engineer</p></div>
-        </div>
-        <div class="message-box">
-          <p><strong>Hi! 👋</strong></p>
-          <p>The easiest way to reach me right now is through GitHub or LinkedIn.</p>
-        </div>
-        <div class="dialog-actions">
-          <a class="button button-primary" href="https://github.com/LisandraDv" target="_blank" rel="noreferrer">Open GitHub</a>
-          <a class="button is-disabled" href="#" aria-disabled="true" data-linkedin-link>LinkedIn — add URL</a>
-          <a class="button is-disabled" href="#" aria-disabled="true" data-resume-link>Resume — add file</a>
-        </div>
-        <p class="config-note">Tip: replace the LinkedIn and Resume placeholders in <code>script.js</code> when you have the final URLs.</p>
-      </div>
+      <div class="dialog-actions footer-actions"><button class="xp-primary js-view-times" type="button">View Available Times</button><button class="xp-button js-close-dialog" type="button">Cancel</button></div>
     </div>
   </dialog>
+
+  <dialog id="save-contact-dialog" class="win-dialog">
+    <div class="dialog-window small-window">
+      <div class="win-titlebar"><span>💾 Add to Address Book</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
+      <div class="dialog-padding">
+        <div class="messenger-profile compact-profile"><div class="mini-avatar"><img src="assets/avatar-retro.png" alt="Retro avatar" data-avatar-image><span data-avatar-fallback>LD</span></div><div><strong>Lisandra Duvernay</strong><small>Cloud & Cybersecurity Engineer</small></div></div>
+        <table class="contact-table"><tbody><tr><th>Email</th><td data-contact-email>Configure in script.js</td></tr><tr><th>LinkedIn</th><td data-contact-linkedin>Configure in script.js</td></tr><tr><th>GitHub</th><td>github.com/LisandraDv</td></tr><tr><th>Portfolio</th><td>lisandradv.github.io/lsdr-security-portfolio/</td></tr></tbody></table>
+      </div>
+      <div class="xp-statusbar"><span>Ready.</span></div>
+      <div class="dialog-actions footer-actions"><button class="xp-primary js-download-vcard" type="button">Save Contact</button><button class="xp-button js-close-dialog" type="button">Cancel</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="resume-dialog" class="win-dialog">
+    <div class="dialog-window resume-window">
+      <div class="win-titlebar"><span>📄 Lisandra_Duvernay_Resume.doc — My Documents</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
+      <div class="resume-toolbar"><button class="xp-button js-open-resume-file" type="button">📄 Open</button><a class="xp-button is-config-link" data-resume-link href="#">💾 Download PDF</a></div>
+      <div class="resume-stage"><article class="resume-paper"><h2>Lisandra Duvernay — Cloud & Cybersecurity Engineer</h2><p>GitHub: github.com/LisandraDv · Portfolio: lisandradv.github.io/lsdr-security-portfolio/</p><h3>PROFESSIONAL SUMMARY</h3><p>Cloud, infrastructure and cybersecurity professional with 3+ years of experience working across Azure, Microsoft security, identity, endpoint protection, hybrid infrastructure and governance.</p><h3>TECHNICAL SKILLS</h3><p><strong>Cloud & Identity:</strong> Azure, Entra ID, Conditional Access, MFA, PIM, RBAC, Microsoft 365</p><p><strong>Security:</strong> Defender, Sentinel, Intune, Purview, WAF, vulnerability management, Zero Trust</p><p><strong>Infrastructure:</strong> VMware, Nutanix, Citrix, Windows Server, Veeam, SQL Server</p><p><strong>Governance & DevSecOps:</strong> Azure Policy, MCSB, Terraform, GitHub Actions, security baselines, BCDR</p><h3>CERTIFICATIONS</h3><p>Microsoft AZ-900 · Microsoft SC-900 · Fortinet Fundamentals · Fortinet Associate · Scrum Foundations</p></article></div>
+      <div class="xp-statusbar"><span>Ready</span><span>Resume preview</span></div>
+    </div>
+  </dialog>
+
+  <dialog id="accessibility-dialog" class="win-dialog">
+    <div class="dialog-window accessibility-window">
+      <div class="win-titlebar"><span>Accessibility Options</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
+      <div class="dialog-padding accessibility-body">
+        <p>Optional display preferences for this site. Settings are stored only in your browser.</p>
+        <div class="access-row"><div><h3>Text Size: <span data-text-size-label>100%</span></h3><p>Increase or decrease text across the portfolio.</p></div><div class="text-size-controls"><button class="xp-button js-text-minus" type="button">A−</button><input type="range" min="90" max="125" step="5" value="100" data-text-size><button class="xp-button js-text-plus" type="button">A+</button></div></div>
+        <label class="toggle-row"><span><strong>High Contrast Mode</strong><small>Increases contrast for better visibility.</small></span><input type="checkbox" data-access-high-contrast><i></i></label>
+        <label class="toggle-row"><span><strong>Readable Spacing</strong><small>Adds letter and word spacing for easier reading.</small></span><input type="checkbox" data-access-readable-spacing><i></i></label>
+        <label class="toggle-row"><span><strong>Reduced Motion</strong><small>Reduces animations and transitions.</small></span><input type="checkbox" data-access-reduced-motion><i></i></label>
+        <label class="toggle-row"><span><strong>Enhanced Focus Indicators</strong><small>Makes keyboard focus more visible.</small></span><input type="checkbox" data-access-focus><i></i></label>
+      </div>
+      <div class="dialog-actions footer-actions"><button class="xp-button js-reset-access" type="button">Reset Defaults</button><button class="xp-primary js-close-dialog" type="button">Done</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="career-archive-dialog" class="win-dialog archive-dialog">
+    <div class="legacy-browser">
+      <div class="legacy-ie-titlebar"><div><span class="legacy-ie-icon">e</span> Microsoft Internet Explorer</div><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div>
+      <div class="legacy-ie-menu"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
+      <div class="legacy-ie-toolbar"><button type="button" class="legacy-tool" data-legacy-target="legacy-home">← Back</button><button type="button" class="legacy-tool" data-legacy-target="legacy-projects">→ Forward</button><button type="button" class="legacy-button js-legacy-refresh">↻ Refresh</button><button type="button" class="legacy-button" data-legacy-target="legacy-home">🏠 Home</button><button type="button" class="legacy-button" data-legacy-target="legacy-projects">Open</button></div>
+      <div class="legacy-address"><span>Address</span><input value="https://lisandradv.github.io/lsdr-security-portfolio/career-archive/" readonly><button type="button" class="legacy-button" data-legacy-target="legacy-home">Go</button></div>
+      <div class="legacy-page" data-legacy-page>
+        <nav class="legacy-nav"><span class="legacy-nav-icon">⌘</span><button type="button" data-legacy-target="legacy-home">Home</button><button type="button" data-legacy-target="legacy-projects">Portfolio⌄</button><button type="button" data-legacy-target="legacy-resume">Resume</button><button type="button" data-legacy-target="legacy-contact">Contact</button><strong>Lisandra S. Duvernay</strong></nav>
+
+        <section id="legacy-home" class="legacy-section legacy-hero">
+          <div class="legacy-portrait"><img src="assets/avatar-retro.png" alt="Retro Lisandra illustration" data-avatar-image><span data-avatar-fallback>LD</span></div>
+          <div class="legacy-hero-copy"><h2>👋 HEY, I'M LISANDRA!</h2><p>I'm a Cloud & Cybersecurity Engineer focused on Azure, identity, Zero Trust, infrastructure security and Microsoft cloud technologies.</p><p>I love building secure systems, documenting what I learn, and turning technical work into practical, repeatable processes.</p></div>
+        </section>
+
+        <section id="legacy-projects" class="legacy-section legacy-projects">
+          <div class="legacy-preview-copy"><h2>A quick preview...</h2><p>A brief teaser of my cloud and cybersecurity work. Open the full portfolio or GitHub for more.</p><a href="#projects" class="legacy-cta js-close-and-scroll">Full Portfolio</a><a href="https://github.com/LisandraDv" target="_blank" rel="noreferrer" class="legacy-cta outline">My GitHub</a></div>
+          <div class="legacy-preview-card"><strong>Azure & Microsoft 365 Security</strong><p>Identity, hardening, governance and monitoring controls.</p></div>
+          <div class="legacy-preview-card"><strong>IaC Security & Policy as Code</strong><p>Terraform validation, Checkov, tfsec and Azure Policy.</p></div>
+          <div class="legacy-preview-card"><strong>Secure Code & DevSecOps</strong><p>SAST, SCA, secret detection and CI/CD checks.</p></div>
+        </section>
+
+        <section id="legacy-tools" class="legacy-section legacy-tools"><h2>Languages & Tools 💼</h2><div class="legacy-word-cloud"><span>Azure</span><span>Entra ID</span><span>Defender</span><span>Sentinel</span><span>Intune</span><span>Purview</span><span>VMware</span><span>Nutanix</span><span>Citrix</span><span>Terraform</span><span>Docker</span><span>GitHub</span><span>PowerShell</span><span>SQL Server</span><span>CyberArk</span></div></section>
+
+        <section id="legacy-resume" class="legacy-section legacy-resume"><div class="legacy-resume-paper"><h2>Lisandra Duvernay</h2><p>Cloud & Cybersecurity Engineer · Dominican Republic</p><p><strong>Cloud & Identity:</strong> Azure, Entra ID, Conditional Access, PIM, RBAC, Microsoft 365</p><p><strong>Security:</strong> Defender, Sentinel, Intune, Purview, WAF, Zero Trust</p><p><strong>Infrastructure:</strong> VMware, Nutanix, Citrix, Windows Server, Veeam</p><p><strong>Governance & DevSecOps:</strong> Azure Policy, MCSB, Terraform, GitHub Actions, BCDR</p></div></section>
+
+        <section id="legacy-contact" class="legacy-section legacy-contact"><h2>Contact Me</h2><p>Let's connect! Here's how you can reach out to me 👇</p><div class="legacy-contact-grid"><button type="button" class="legacy-contact-item js-open-contact">✉️ <strong>Email</strong><span>Send a message</span></button><a class="legacy-contact-item" href="https://github.com/LisandraDv" target="_blank" rel="noreferrer">🐙 <strong>GitHub</strong><span>LisandraDv</span></a><div class="legacy-contact-item">📍 <strong>Location</strong><span>Dominican Republic</span></div><a class="legacy-contact-item is-config-link" data-linkedin-link href="#">in <strong>LinkedIn</strong><span>Connect professionally</span></a></div></section>
+
+        <footer class="legacy-footer"><button data-legacy-target="legacy-home">Home</button><button data-legacy-target="legacy-projects">My Work</button><button data-legacy-target="legacy-resume">Resume</button><button data-legacy-target="legacy-tools">Site Archive</button><button data-legacy-target="legacy-contact">Contact</button><div class="legacy-socials"><button type="button" class="js-open-contact">✉</button><a href="https://github.com/LisandraDv" target="_blank" rel="noreferrer">◉</a><a class="is-config-link" data-linkedin-link href="#">in</a></div><small>Made with curiosity by Lisandra Duvernay</small></footer>
+      </div>
+      <div class="legacy-statusbar"><span>Done</span><span>Internet</span></div>
+    </div>
+  </dialog>
+
+  <dialog id="project-dialog" class="win-dialog">
+    <div class="dialog-window medium-window"><div class="win-titlebar"><span>📁 Project Details</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div><div class="dialog-padding"><p class="dialog-kicker">SECURITY LAB</p><h2 data-project-title>Project</h2><h3>Objective</h3><p data-project-objective></p><h3>Tools</h3><p data-project-tools></p></div><div class="dialog-actions footer-actions"><a class="xp-primary" data-project-link href="#">Open on GitHub</a><button class="xp-button js-close-dialog" type="button">Close</button></div></div>
+  </dialog>
+
+  <dialog id="training-dialog" class="win-dialog">
+    <div class="dialog-window training-window"><div class="win-titlebar"><span>📸 Training Viewer</span><button class="win-close js-close-dialog" type="button" aria-label="Close">×</button></div><div class="dialog-padding"><div class="experience-unlocked">🏆 EXPERIENCE UNLOCKED</div><h2 data-training-title>Training</h2><p><strong data-training-provider></strong> · <span data-training-location></span></p><p data-training-description></p><div class="gallery-stage" data-gallery-stage></div><div class="gallery-controls" data-gallery-controls hidden><button class="xp-button" data-gallery-prev type="button">◀ Previous</button><span data-gallery-counter></span><button class="xp-button" data-gallery-next type="button">Next ▶</button></div></div></div>
+  </dialog>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
 </body>
 </html>
