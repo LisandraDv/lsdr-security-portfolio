@@ -371,6 +371,28 @@ function wireSearch() {
   });
 }
 
+
+function wireSelectableChips() {
+  qsa(".interest-grid span, .built-with-row span").forEach((chip) => {
+    chip.setAttribute("role", "button");
+    chip.setAttribute("tabindex", "0");
+    chip.setAttribute("aria-pressed", "false");
+
+    const toggle = () => {
+      const selected = chip.classList.toggle("is-selected");
+      chip.setAttribute("aria-pressed", selected ? "true" : "false");
+    };
+
+    chip.addEventListener("click", toggle);
+    chip.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggle();
+      }
+    });
+  });
+}
+
 function initialize() {
   configureAvatarFallbacks();
   configureLinks();
@@ -383,6 +405,7 @@ function initialize() {
   wireLegacyArchive();
   wireTheme();
   wireSearch();
+  wireSelectableChips();
 }
 
 document.addEventListener("DOMContentLoaded", initialize);
