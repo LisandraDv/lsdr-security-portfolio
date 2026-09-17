@@ -791,7 +791,7 @@ function readPalette() {
     const saved = JSON.parse(localStorage.getItem(PALETTE_KEY) || "null");
     if (saved?.primary && saved?.secondary) return saved;
   } catch {}
-  return { id: "cyber-girl", ...PALETTES["cyber-girl"] };
+  return { id: "cyan-night", ...PALETTES["cyan-night"] };
 }
 
 function wireThemeCustomizer() {
