@@ -6,7 +6,7 @@
   <meta name="description" content="Lisandra Duvernay — Cloud & Cybersecurity Engineer focused on Azure, IAM, Zero Trust, infrastructure and Microsoft security.">
   <meta name="theme-color" content="#16243a">
   <title>Lisandra Duvernay — Cloud & Cybersecurity Portfolio</title>
-  <link rel="stylesheet" href="./style.css?v=v4-2-20260917">
+  <link rel="stylesheet" href="./style.css?v=v4-3-20260917">
   <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js" defer></script>
   <script src="./script.js?v=v3-9-20260916" defer></script>
 </head>
@@ -89,16 +89,21 @@
         <section class="retro-panel profile-card" aria-labelledby="profile-name">
           <div class="profile-heading">
             <h1 id="profile-name">Lisandra Duvernay</h1>
-            <p>Cloud & Cybersecurity Engineer</p>
+            <p>Cloud &amp; Cybersecurity Engineer</p>
           </div>
+
           <div class="profile-summary-grid">
             <div class="pixel-avatar-wrap">
-              <img class="pixel-avatar" src="assests/meretro.png" alt="Retro avatar for Lisandra Duvernay" data-avatar-image>
+              <img
+                class="pixel-avatar"
+                src="assests/meretro.png"
+                alt="Retro avatar for Lisandra Duvernay"
+                data-avatar-image
+              >
               <div class="pixel-avatar-fallback" data-avatar-fallback>LD</div>
             </div>
 
             <div class="profile-facts system-profile-facts">
-
               <p class="profile-online system-profile-row">
                 <span class="system-profile-icon system-online-icon" aria-hidden="true">●</span>
                 <strong>Online</strong>
@@ -124,28 +129,35 @@
                 <span class="system-profile-icon" aria-hidden="true">🖥️</span>
                 <span>Cloud · Security · Infrastructure</span>
               </p>
-
             </div>
           </div>
 
-          <div class="profile-system-meta">
-            <p>
+          <div class="profile-system-separator" aria-hidden="true"></div>
+
+          <div class="profile-system-meta" aria-label="Profile system information">
+            <div class="profile-meta-row">
               <span class="system-profile-icon" aria-hidden="true">⚙️</span>
-              <span>Status: <strong>Currently building secure cloud systems.</strong></span>
-            </p>
+              <span class="profile-meta-label">STATUS</span>
+              <span class="profile-meta-value"><strong>Currently building secure cloud systems.</strong></span>
+            </div>
 
-            <p>
+            <div class="profile-meta-row">
               <span class="system-profile-icon" aria-hidden="true">🕘</span>
-              <span>Last Login: <span data-last-login>now</span></span>
-            </p>
+              <span class="profile-meta-label">LAST LOGIN</span>
+              <span class="profile-meta-value" data-last-login>now</span>
+            </div>
 
-            <p>
+            <div class="profile-meta-row">
               <span class="system-profile-icon" aria-hidden="true">👁️</span>
-              <span>Profile Views: <span id="local-visits">1</span></span>
-            </p>
+              <span class="profile-meta-label">VIEWS</span>
+              <span class="profile-meta-value" id="local-visits">1</span>
+            </div>
           </div>
 
-          <p class="view-my">View My: <button class="text-button js-open-career" type="button">Career Archive</button></p>
+          <div class="profile-career-link">
+            <span>View My:</span>
+            <button class="text-button js-open-career" type="button">Career Archive</button>
+          </div>
         </section>
 
         <section class="retro-panel contacting-panel" aria-labelledby="contacting-title">
