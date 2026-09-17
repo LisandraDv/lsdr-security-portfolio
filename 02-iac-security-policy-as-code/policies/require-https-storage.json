@@ -1,0 +1,28 @@
+﻿{
+  "properties": {
+    "displayName": "Require HTTPS for Azure Storage",
+    "description": "Denies Azure Storage Accounts that do not enforce HTTPS traffic only.",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "Storage",
+      "version": "1.0.0"
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Storage/storageAccounts"
+          },
+          {
+            "field": "Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly",
+            "notEquals": true
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

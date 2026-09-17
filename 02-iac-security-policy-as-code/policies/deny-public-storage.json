@@ -1,0 +1,28 @@
+﻿{
+  "properties": {
+    "displayName": "Deny public network access for Azure Storage",
+    "description": "Denies Azure Storage Accounts that allow public network access.",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "Storage",
+      "version": "1.0.0"
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Storage/storageAccounts"
+          },
+          {
+            "field": "Microsoft.Storage/storageAccounts/publicNetworkAccess",
+            "notEquals": "Disabled"
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

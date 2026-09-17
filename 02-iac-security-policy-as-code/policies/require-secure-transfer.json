@@ -1,0 +1,28 @@
+﻿{
+  "properties": {
+    "displayName": "Require TLS 1.2 for Azure Storage",
+    "description": "Denies Azure Storage Accounts that do not require TLS 1.2.",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "Storage",
+      "version": "1.0.0"
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Storage/storageAccounts"
+          },
+          {
+            "field": "Microsoft.Storage/storageAccounts/minimumTlsVersion",
+            "notEquals": "TLS1_2"
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}
