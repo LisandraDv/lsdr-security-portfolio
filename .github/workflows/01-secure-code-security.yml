@@ -1,0 +1,148 @@
+name: 01 - Secure Code Security Pipeline
+
+on:
+  push:
+    paths:
+      - '01-secure-code-sca-sast-secret-detection/**'
+      - '.github/workflows/01-secure-code-security.yml'
+  pull_request:
+    paths:
+      - '01-secure-code-sca-sast-secret-detection/**'
+      - '.github/workflows/01-secure-code-security.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  demo-findings:
+    name: Demo findings - vulnerable app
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js for dependency manifest
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate vulnerable dependency lockfile
+        working-directory: 01-secure-code-sca-sast-secret-detection/vulnerable-app
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Semgrep
+        run: pip install semgrep
+
+      - name: Semgrep - expected vulnerable findings
+        continue-on-error: true
+        run: |
+          semgrep \
+            --config 01-secure-code-sca-sast-secret-detection/rules/semgrep.yml \
+            01-secure-code-sca-sast-secret-detection/vulnerable-app
+
+      - name: Gitleaks - expected synthetic secret finding
+        continue-on-error: true
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            zricethezav/gitleaks:latest \
+            detect \
+            --source=/repo/01-secure-code-sca-sast-secret-detection/vulnerable-app \
+            --config=/repo/01-secure-code-sca-sast-secret-detection/config/gitleaks.toml \
+            --no-git \
+            --verbose
+
+      - name: Trivy - expected dependency findings
+        continue-on-error: true
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: '01-secure-code-sca-sast-secret-detection/vulnerable-app'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1'
+          ignore-unfixed: true
+
+      - name: OWASP Dependency-Check - demonstration report
+        continue-on-error: true
+        run: |
+          mkdir -p dependency-check-report
+          docker run --rm \
+            -v "$PWD/01-secure-code-sca-sast-secret-detection/vulnerable-app:/src" \
+            -v "$PWD/dependency-check-report:/report" \
+            owasp/dependency-check:latest \
+            --scan /src \
+            --format HTML \
+            --out /report \
+            --project "LSDR Secure Code Demo"
+
+      - name: Upload Dependency-Check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-check-demo-report
+          path: dependency-check-report/
+          if-no-files-found: ignore
+
+  security-gate:
+    name: Security gate - remediated app
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install secure app dependencies
+        working-directory: 01-secure-code-sca-sast-secret-detection/secure-app
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Functional tests
+        working-directory: 01-secure-code-sca-sast-secret-detection/secure-app
+        run: npm test
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Semgrep
+        run: pip install semgrep
+
+      - name: Semgrep gate
+        run: |
+          semgrep \
+            --config 01-secure-code-sca-sast-secret-detection/rules/semgrep.yml \
+            --error \
+            01-secure-code-sca-sast-secret-detection/secure-app
+
+      - name: Gitleaks gate
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            zricethezav/gitleaks:latest \
+            detect \
+            --source=/repo/01-secure-code-sca-sast-secret-detection/secure-app \
+            --config=/repo/01-secure-code-sca-sast-secret-detection/config/gitleaks.toml \
+            --no-git \
+            --verbose
+
+      - name: Trivy gate
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: '01-secure-code-sca-sast-secret-detection/secure-app'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1'
+          ignore-unfixed: true
