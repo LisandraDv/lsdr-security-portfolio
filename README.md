@@ -1,5 +1,3 @@
-<div align="center">
-
 # 🔐 LSDR Security Lab
 
 ### Cloud Security · AppSec · DevSecOps · Infrastructure Security
@@ -14,8 +12,6 @@ Hands-on cybersecurity portfolio focused on building, testing, hardening, and va
 
 **[🌐 View Portfolio](https://lisandradv.github.io/lsdr-security-portfolio/)** ·
 **[💻 GitHub Profile](https://github.com/LisandraDv)**
-
-</div>
 
 ---
 
@@ -63,15 +59,15 @@ Rather than presenting security only as documentation, each lab is designed arou
 
 ---
 
-## Completed Security Projects
+## Security Projects
 
-| # | Project | Security Areas | Key Technologies | Status |
-|---|---|---|---|---|
-| **01** | [Secure Code, SCA, SAST & Secret Detection](./01-secure-code-sca-sast-secret-detection/) | AppSec, SAST, SCA, secrets, CI/CD security gates | Semgrep, Gitleaks, Trivy, OWASP Dependency-Check, GitHub Actions | ✅ Completed |
-| **02** | [Infrastructure as Code Security & Policy as Code](./02-iac-security-policy-as-code/) | IaC scanning, policy enforcement, cloud misconfiguration prevention | Terraform, Checkov, tfsec, policy-as-code | ✅ Completed |
-| **03** | [Container & Kubernetes Security](./03-container-kubernetes-security/) | Image scanning, container security, Kubernetes workload security | Docker, Trivy, Kubernetes security controls | ✅ Completed |
-| **04** | [DAST & Continuous Security Monitoring](./04-dast-continuous-security-monitoring/) | Runtime testing, vulnerability discovery, security monitoring | DAST, logging, monitoring, security findings | ✅ Completed |
-| **05** | [Cloud Security Hardening — Azure & Microsoft 365](./05-cloud-security-hardening-azure-m365/) | Identity, endpoint, cloud posture, access control, monitoring | Azure, Entra ID, Defender, Intune, Microsoft 365 | ✅ Completed |
+| # | Project | Security Areas | Key Technologies |
+|---|---|---|---|
+| **01** | [Secure Code, SCA, SAST & Secret Detection](./01-secure-code-sca-sast-secret-detection/) | AppSec, SAST, SCA, secrets, CI/CD security gates | Semgrep, Gitleaks, Trivy, OWASP Dependency-Check, GitHub Actions |
+| **02** | [Infrastructure as Code Security & Policy as Code](./02-iac-security-policy-as-code/) | IaC scanning, policy enforcement, cloud misconfiguration prevention | Terraform, Checkov, tfsec, policy-as-code |
+| **03** | [Container & Kubernetes Security](./03-container-kubernetes-security/) | Image scanning, container security, Kubernetes workload security | Docker, Trivy, Kubernetes security controls |
+| **04** | [DAST & Continuous Security Monitoring](./04-dast-continuous-security-monitoring/) | Runtime testing, vulnerability discovery, security monitoring | DAST, logging, monitoring, security findings |
+| **05** | [Cloud Security Hardening — Azure & Microsoft 365](./05-cloud-security-hardening-azure-m365/) | Identity, endpoint, cloud posture, access control, monitoring | Azure, Entra ID, Defender, Intune, Microsoft 365 |
 
 ---
 
