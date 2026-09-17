@@ -1,4 +1,4 @@
-# 🔐 LSDR Security Lab
+# LSDR Security Lab
 
 ### Cloud Security · AppSec · DevSecOps · Infrastructure Security
 
@@ -10,8 +10,8 @@ Hands-on cybersecurity portfolio focused on building, testing, hardening, and va
 ![AppSec](https://img.shields.io/badge/AppSec-SAST%20%7C%20SCA%20%7C%20DAST-orange)
 ![Azure](https://img.shields.io/badge/Microsoft-Azure-0078D4?logo=microsoftazure&logoColor=white)
 
-**[🌐 View Portfolio](https://lisandradv.github.io/lsdr-security-portfolio/)** ·
-**[💻 GitHub Profile](https://github.com/LisandraDv)**
+**[View Portfolio](https://lisandradv.github.io/lsdr-security-portfolio/)** ·
+**[GitHub Profile](https://github.com/LisandraDv)**
 
 ---
 
