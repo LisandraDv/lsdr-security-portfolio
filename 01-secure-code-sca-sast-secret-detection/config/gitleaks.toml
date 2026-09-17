@@ -1,0 +1,14 @@
+title = "LSDR Secure Code Demo Gitleaks Configuration"
+
+[[rules]]
+id = "demo-hardcoded-secret"
+description = "Detect the synthetic demo_key_ value used only by this portfolio lab"
+regex = '''demo_key_[A-Za-z0-9_]{10,}'''
+tags = ["demo", "secret", "portfolio"]
+
+[allowlist]
+description = "No production credentials are allow-listed."
+paths = [
+  '''README\\.md$''',
+  '''docs/.*\\.md$'''
+]
