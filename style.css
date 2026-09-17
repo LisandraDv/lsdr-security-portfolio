@@ -377,7 +377,7 @@ a { color: var(--link); }
 .legacy-statusbar { flex: 0 0 auto; }
 
 /* ===== ACCESSIBILITY / THEME ===== */
-body.high-contrast { filter: contrast(1.2); }
+
 body.readable-spacing { letter-spacing: .03em; word-spacing: .06em; }
 body.reduced-motion *, body.reduced-motion *::before, body.reduced-motion *::after { scroll-behavior: auto!important; transition: none!important; animation: none!important; }
 body.enhanced-focus :focus-visible { outline: 3px solid #ffe44f!important; outline-offset: 3px!important; }
@@ -2132,5 +2132,206 @@ body.dark-mode .experience-company-copy span {
   .profile-card .flag-system-wrap::after {
     animation: none !important;
     transform: none !important;
+  }
+}
+
+/* ===== V4.5 · ACCESSIBILITY FAB + DIALOG + FOOTER FIX ===== */
+
+/* Keep the page structure stable so the footer stays at the real bottom. */
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-shell {
+  width: 100%;
+  flex: 1 0 auto;
+}
+
+.retro-footer {
+  width: 100%;
+  min-height: 54px;
+  flex: 0 0 auto;
+  margin: 0;
+  align-items: center;
+}
+
+
+/* High contrast without filtering the whole body.
+   A filter on body creates a containing block that can break fixed UI. */
+body.high-contrast {
+  --text: #ffffff;
+  --muted: #e3ecf6;
+  --panel: #101b2a;
+  --panel-dark: #07101a;
+  --border: #ffffff;
+  --border-soft: #d9e7ff;
+  --link: #5cffff;
+  --cyan: #5cffff;
+
+  background: #02070d;
+  color: #ffffff;
+}
+
+body.high-contrast .retro-panel,
+body.high-contrast .dialog-window {
+  border-color: #ffffff;
+}
+
+body.high-contrast a,
+body.high-contrast .text-button,
+body.high-contrast .plain-url {
+  text-decoration-thickness: 2px;
+}
+
+
+/* The floating accessibility control is now the only accessibility button.
+   It remains pinned to the viewport while scrolling. */
+.accessibility-fab {
+  position: fixed !important;
+  right: 22px !important;
+  bottom: 22px !important;
+  top: auto !important;
+  left: auto !important;
+
+  z-index: 9998 !important;
+
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  min-height: 56px !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border-radius: 50% !important;
+  border: 1px solid var(--accent-soft) !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent-2) 82%, #ffffff),
+      var(--accent)
+    ) !important;
+
+  color: #ffffff !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.28),
+    0 7px 18px rgba(0,0,0,.42),
+    0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent) !important;
+
+  transform: none !important;
+}
+
+
+/* Accessibility rows: title above description, switch aligned right. */
+.accessibility-body .toggle-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  column-gap: 18px !important;
+  row-gap: 0 !important;
+  align-items: center !important;
+
+  width: 100%;
+  padding: 12px 0 !important;
+}
+
+.accessibility-body .toggle-row > .toggle-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+
+  min-width: 0;
+  width: 100%;
+  gap: 4px !important;
+}
+
+.accessibility-body .toggle-row > .toggle-copy > strong {
+  display: block !important;
+  width: 100%;
+
+  margin: 0 !important;
+
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.accessibility-body .toggle-row > .toggle-copy > small {
+  display: block !important;
+  width: 100%;
+
+  margin: 0 !important;
+
+  color: #555;
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: normal !important;
+}
+
+.accessibility-body .toggle-row > input + i,
+.accessibility-body .toggle-row > i {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  align-self: center;
+}
+
+
+/* Keep the text-size row balanced too. */
+.accessibility-body .access-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 20px !important;
+  align-items: center !important;
+}
+
+.accessibility-body .access-row > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+}
+
+.accessibility-body .access-row h3,
+.accessibility-body .access-row p {
+  margin: 0 !important;
+}
+
+
+/* Mobile placement keeps the FAB visible without sitting on screen edges. */
+@media (max-width: 640px) {
+  .accessibility-fab {
+    right: 14px !important;
+    bottom: 14px !important;
+
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    min-height: 50px !important;
+
+    font-size: 21px !important;
+  }
+
+  .accessibility-body .toggle-row {
+    column-gap: 12px !important;
+  }
+
+  .accessibility-body .access-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .accessibility-body .text-size-controls {
+    justify-self: start;
   }
 }
