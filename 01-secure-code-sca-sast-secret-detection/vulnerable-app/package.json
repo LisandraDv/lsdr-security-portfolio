@@ -1,0 +1,11 @@
+{
+  "name": "lsdr-vulnerable-secure-code-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Intentionally vulnerable dependency manifest for a controlled AppSec portfolio lab.",
+  "main": "app.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "lodash": "4.17.15"
+  }
+}
