@@ -44,25 +44,16 @@ jobs:
       - name: Semgrep - expected vulnerable findings
         continue-on-error: true
         run: |
-          semgrep \
-            --config 01-secure-code-sca-sast-secret-detection/rules/semgrep.yml \
-            01-secure-code-sca-sast-secret-detection/vulnerable-app
+          semgrep             --config 01-secure-code-sca-sast-secret-detection/rules/semgrep.yml             01-secure-code-sca-sast-secret-detection/vulnerable-app
 
       - name: Gitleaks - expected synthetic secret finding
         continue-on-error: true
         run: |
-          docker run --rm \
-            -v "$PWD:/repo" \
-            zricethezav/gitleaks:latest \
-            detect \
-            --source=/repo/01-secure-code-sca-sast-secret-detection/vulnerable-app \
-            --config=/repo/01-secure-code-sca-sast-secret-detection/config/gitleaks.toml \
-            --no-git \
-            --verbose
+          docker run --rm             -v "$PWD:/repo"             zricethezav/gitleaks:latest             detect             --source=/repo/01-secure-code-sca-sast-secret-detection/vulnerable-app             --config=/repo/01-secure-code-sca-sast-secret-detection/config/gitleaks.toml             --no-git             --verbose
 
       - name: Trivy - expected dependency findings
         continue-on-error: true
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: '01-secure-code-sca-sast-secret-detection/vulnerable-app'
@@ -74,14 +65,7 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p dependency-check-report
-          docker run --rm \
-            -v "$PWD/01-secure-code-sca-sast-secret-detection/vulnerable-app:/src" \
-            -v "$PWD/dependency-check-report:/report" \
-            owasp/dependency-check:latest \
-            --scan /src \
-            --format HTML \
-            --out /report \
-            --project "LSDR Secure Code Demo"
+          docker run --rm             -v "$PWD/01-secure-code-sca-sast-secret-detection/vulnerable-app:/src"             -v "$PWD/dependency-check-report:/report"             owasp/dependency-check:latest             --scan /src             --format HTML             --out /report             --project "LSDR Secure Code Demo"
 
       - name: Upload Dependency-Check report
         if: always()
@@ -122,24 +106,14 @@ jobs:
 
       - name: Semgrep gate
         run: |
-          semgrep \
-            --config 01-secure-code-sca-sast-secret-detection/rules/semgrep.yml \
-            --error \
-            01-secure-code-sca-sast-secret-detection/secure-app
+          semgrep             --config 01-secure-code-sca-sast-secret-detection/rules/semgrep.yml             --error             01-secure-code-sca-sast-secret-detection/secure-app
 
       - name: Gitleaks gate
         run: |
-          docker run --rm \
-            -v "$PWD:/repo" \
-            zricethezav/gitleaks:latest \
-            detect \
-            --source=/repo/01-secure-code-sca-sast-secret-detection/secure-app \
-            --config=/repo/01-secure-code-sca-sast-secret-detection/config/gitleaks.toml \
-            --no-git \
-            --verbose
+          docker run --rm             -v "$PWD:/repo"             zricethezav/gitleaks:latest             detect             --source=/repo/01-secure-code-sca-sast-secret-detection/secure-app             --config=/repo/01-secure-code-sca-sast-secret-detection/config/gitleaks.toml             --no-git             --verbose
 
       - name: Trivy gate
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: '01-secure-code-sca-sast-secret-detection/secure-app'
