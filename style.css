@@ -2432,3 +2432,101 @@ body.high-contrast .dialog-window {
     transform: none !important;
   }
 }
+
+/* ===== FLAG ANIMATION ONLY · RESTORED FROM V4.4 ===== */
+/* Shine sweep + subtle glow. Online animation intentionally untouched. */
+
+.profile-card .flag-system-wrap {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate;
+  animation: flag-visible-glow 4.8s ease-in-out infinite !important;
+}
+
+.profile-card .flag-system-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 2;
+  pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--accent) 72%, #ffffff);
+  opacity: .28;
+  box-shadow:
+    0 0 4px color-mix(in srgb, var(--accent) 38%, transparent),
+    inset 0 0 3px rgba(255,255,255,.18);
+}
+
+.profile-card .flag-system-wrap::after {
+  content: "" !important;
+  position: absolute !important;
+  top: -32% !important;
+  left: -70% !important;
+  width: 42% !important;
+  height: 170% !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+  opacity: 0;
+  background: linear-gradient(
+    102deg,
+    transparent 0%,
+    rgba(255,255,255,0) 20%,
+    rgba(255,255,255,.28) 38%,
+    rgba(255,255,255,.95) 50%,
+    rgba(255,255,255,.32) 62%,
+    rgba(255,255,255,0) 80%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  animation: flag-visible-shine 4.2s ease-in-out infinite !important;
+}
+
+@keyframes flag-visible-shine {
+  0%, 56% {
+    left: -70%;
+    opacity: 0;
+  }
+
+  64% {
+    opacity: .22;
+  }
+
+  74% {
+    opacity: .92;
+  }
+
+  84% {
+    opacity: .34;
+  }
+
+  91%, 100% {
+    left: 138%;
+    opacity: 0;
+  }
+}
+
+@keyframes flag-visible-glow {
+  0%, 100% {
+    filter: brightness(1);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,.24),
+      inset 0 0 0 1px rgba(255,255,255,.32),
+      0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+
+  74% {
+    filter: brightness(1.04);
+  }
+
+  82% {
+    filter: brightness(1.18);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,.24),
+      inset 0 0 0 1px rgba(255,255,255,.42),
+      0 0 10px color-mix(in srgb, var(--accent) 48%, transparent);
+  }
+
+  90% {
+    filter: brightness(1.04);
+  }
+}
+
