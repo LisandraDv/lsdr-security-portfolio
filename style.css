@@ -1769,3 +1769,169 @@ body.dark-mode .experience-company-copy span {
     animation: none !important;
   }
 }
+
+/* ===== ORGANIZED PROFILE CARD · V4.3 ===== */
+
+.profile-card {
+  padding: 15px 16px 14px;
+}
+
+.profile-card .profile-heading {
+  margin-bottom: 12px;
+}
+
+.profile-card .profile-heading h1 {
+  margin: 0 0 3px;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.profile-card .profile-heading p {
+  margin: 0;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.profile-card .profile-summary-grid {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.profile-card .system-profile-facts {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  padding-top: 1px;
+  min-width: 0;
+}
+
+.profile-card .system-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 18px;
+  margin: 0 !important;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.profile-card .system-profile-icon {
+  width: 20px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.profile-card .system-online-icon {
+  color: #39e66d;
+  font-size: 13px;
+}
+
+.profile-card .profile-system-separator {
+  height: 1px;
+  margin: 13px 0 11px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent-soft) 64%, transparent) 8%,
+    color-mix(in srgb, var(--accent-soft) 64%, transparent) 92%,
+    transparent
+  );
+  box-shadow: 0 1px 0 rgba(255,255,255,.03);
+}
+
+.profile-card .profile-system-meta {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.profile-card .profile-meta-row {
+  display: grid;
+  grid-template-columns: 20px 88px minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+  min-height: 20px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.profile-card .profile-meta-label {
+  color: color-mix(in srgb, var(--accent-soft) 78%, #ffffff);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .055em;
+  white-space: nowrap;
+}
+
+.profile-card .profile-meta-value {
+  min-width: 0;
+  color: var(--text);
+}
+
+.profile-card .profile-meta-value strong {
+  color: #ffffff;
+}
+
+.profile-card .profile-career-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.045);
+  font-size: 13px;
+}
+
+.profile-card .profile-career-link .text-button {
+  font-size: inherit;
+}
+
+/* Disable the old layout rule now that Career Archive has its own wrapper. */
+.profile-card .view-my {
+  margin: 0 !important;
+}
+
+/* Keep the Dominican Republic flag in compact system-icon form. */
+.profile-card .flag-system-wrap {
+  width: 24px !important;
+  height: 16px !important;
+  min-width: 24px !important;
+  max-width: 24px !important;
+  min-height: 16px !important;
+  max-height: 16px !important;
+  flex: 0 0 24px !important;
+}
+
+.profile-card .flag-system-wrap .profile-country-flag {
+  width: 22px !important;
+  height: 14px !important;
+  min-width: 22px !important;
+  max-width: 22px !important;
+  min-height: 14px !important;
+  max-height: 14px !important;
+}
+
+@media (max-width: 520px) {
+  .profile-card .profile-summary-grid {
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 11px;
+  }
+
+  .profile-card .pixel-avatar-wrap {
+    width: 92px;
+    height: 92px;
+  }
+
+  .profile-card .profile-meta-row {
+    grid-template-columns: 20px 76px minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .profile-card .profile-meta-label {
+    font-size: 9px;
+  }
+}
