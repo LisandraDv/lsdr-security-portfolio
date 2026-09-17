@@ -1,0 +1,20 @@
+rules:
+  - id: no-javascript-eval
+    languages: [javascript]
+    message: Avoid eval(); use explicit parsing or allow-listed operations instead.
+    severity: ERROR
+    pattern: eval(...)
+    metadata:
+      category: security
+      technology: [javascript]
+      cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+
+  - id: no-hardcoded-demo-secret
+    languages: [javascript]
+    message: Synthetic demo secret is hardcoded. Read credentials from environment variables or a secret manager.
+    severity: ERROR
+    pattern-regex: "DEMO_(API_KEY|SECRET)\\s*=\\s*['\"][^'\"]+['\"]"
+    metadata:
+      category: security
+      technology: [javascript]
+      cwe: "CWE-798: Use of Hard-coded Credentials"
