@@ -377,7 +377,7 @@ a { color: var(--link); }
 .legacy-statusbar { flex: 0 0 auto; }
 
 /* ===== ACCESSIBILITY / THEME ===== */
-
+body.high-contrast { filter: contrast(1.2); }
 body.readable-spacing { letter-spacing: .03em; word-spacing: .06em; }
 body.reduced-motion *, body.reduced-motion *::before, body.reduced-motion *::after { scroll-behavior: auto!important; transition: none!important; animation: none!important; }
 body.enhanced-focus :focus-visible { outline: 3px solid #ffe44f!important; outline-offset: 3px!important; }
@@ -2135,38 +2135,15 @@ body.dark-mode .experience-company-copy span {
   }
 }
 
-/* ===== V4.5 · ACCESSIBILITY FAB + DIALOG + FOOTER FIX ===== */
+/* ===== V4.6 · FIXED ACCESSIBILITY LAYER + CLEAN FOOTER ===== */
 
-/* Keep the page structure stable so the footer stays at the real bottom. */
-html {
-  min-height: 100%;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.page-shell {
-  width: 100%;
-  flex: 1 0 auto;
-}
-
-.retro-footer {
-  width: 100%;
-  min-height: 54px;
-  flex: 0 0 auto;
-  margin: 0;
-  align-items: center;
-}
-
-
-/* High contrast without filtering the whole body.
-   A filter on body creates a containing block that can break fixed UI. */
+/* Keep High Contrast functional without filtering the entire document.
+   filter on body/html can change how position:fixed behaves in browsers. */
 body.high-contrast {
+  filter: none !important;
+
   --text: #ffffff;
-  --muted: #e3ecf6;
+  --muted: #e7eef8;
   --panel: #101b2a;
   --panel-dark: #07101a;
   --border: #ffffff;
@@ -2174,7 +2151,6 @@ body.high-contrast {
   --link: #5cffff;
   --cyan: #5cffff;
 
-  background: #02070d;
   color: #ffffff;
 }
 
@@ -2183,34 +2159,53 @@ body.high-contrast .dialog-window {
   border-color: #ffffff;
 }
 
-body.high-contrast a,
-body.high-contrast .text-button,
-body.high-contrast .plain-url {
-  text-decoration-thickness: 2px;
+
+/* Dedicated viewport layer.
+   The layer itself never participates in page layout. */
+.accessibility-fab-layer {
+  position: fixed !important;
+  inset: 0 !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  z-index: 2147483000 !important;
+
+  pointer-events: none !important;
+
+  transform: none !important;
+  filter: none !important;
+  perspective: none !important;
+  contain: none !important;
 }
 
 
-/* The floating accessibility control is now the only accessibility button.
-   It remains pinned to the viewport while scrolling. */
-.accessibility-fab {
-  position: fixed !important;
+/* The button is positioned inside the fixed viewport layer. */
+.accessibility-fab-layer .accessibility-fab {
+  position: absolute !important;
+
   right: 22px !important;
   bottom: 22px !important;
   top: auto !important;
   left: auto !important;
-
-  z-index: 9998 !important;
 
   width: 56px !important;
   height: 56px !important;
   min-width: 56px !important;
   min-height: 56px !important;
 
+  margin: 0 !important;
+  padding: 0 !important;
+
   display: grid !important;
   place-items: center !important;
 
-  margin: 0 !important;
-  padding: 0 !important;
+  pointer-events: auto !important;
+
+  z-index: 1 !important;
 
   border-radius: 50% !important;
   border: 1px solid var(--accent-soft) !important;
@@ -2235,13 +2230,15 @@ body.high-contrast .plain-url {
 }
 
 
-/* Accessibility rows: title above description, switch aligned right. */
+/* Accessibility dialog: title and description are stacked cleanly. */
 .accessibility-body .toggle-row {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) auto !important;
+
+  align-items: center !important;
+
   column-gap: 18px !important;
   row-gap: 0 !important;
-  align-items: center !important;
 
   width: 100%;
   padding: 12px 0 !important;
@@ -2253,9 +2250,10 @@ body.high-contrast .plain-url {
   align-items: flex-start !important;
   justify-content: center !important;
 
-  min-width: 0;
-  width: 100%;
   gap: 4px !important;
+
+  width: 100%;
+  min-width: 0;
 }
 
 .accessibility-body .toggle-row > .toggle-copy > strong {
@@ -2277,24 +2275,22 @@ body.high-contrast .plain-url {
   color: #555;
   font-size: 12px;
   line-height: 1.35;
+
   white-space: normal !important;
 }
 
-.accessibility-body .toggle-row > input + i,
 .accessibility-body .toggle-row > i {
-  grid-column: 2;
-  grid-row: 1;
   justify-self: end;
   align-self: center;
 }
 
 
-/* Keep the text-size row balanced too. */
+/* Keep text-size controls tidy without changing page layout. */
 .accessibility-body .access-row {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) auto !important;
-  gap: 20px !important;
   align-items: center !important;
+  gap: 20px !important;
 }
 
 .accessibility-body .access-row > div:first-child {
@@ -2309,9 +2305,103 @@ body.high-contrast .plain-url {
 }
 
 
-/* Mobile placement keeps the FAB visible without sitting on screen edges. */
+/* Footer uses the original site layout again.
+   No body flex/grid hacks are used in V4.6. */
+.retro-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  min-height: 48px;
+
+  margin: 0;
+  padding: 12px 5vw;
+
+  flex: none;
+
+  color: #8fa2b7;
+  background: #07101a;
+  border-top: 1px solid #23344b;
+
+  font-size: 12px;
+}
+
+
+/* Preserve the exact V4.4 online animation. */
+.profile-card .system-online-icon {
+  display: inline-block !important;
+  color: #39e66d !important;
+  opacity: 1;
+  transform-origin: center center;
+
+  text-shadow:
+    0 0 4px rgba(57,230,109,.62),
+    0 0 9px rgba(57,230,109,.24);
+
+  animation: online-led-breathe 2.6s ease-in-out infinite !important;
+}
+
+
+/* Preserve the exact V4.4 flag shine sweep + glow. */
+.profile-card .flag-system-wrap {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate;
+
+  animation: flag-visible-glow 4.8s ease-in-out infinite !important;
+}
+
+.profile-card .flag-system-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 2;
+  pointer-events: none;
+
+  border: 1px solid color-mix(in srgb, var(--accent) 72%, #ffffff);
+  opacity: .28;
+
+  box-shadow:
+    0 0 4px color-mix(in srgb, var(--accent) 38%, transparent),
+    inset 0 0 3px rgba(255,255,255,.18);
+}
+
+.profile-card .flag-system-wrap::after {
+  content: "" !important;
+  position: absolute !important;
+
+  top: -32% !important;
+  left: -70% !important;
+
+  width: 42% !important;
+  height: 170% !important;
+
+  z-index: 5 !important;
+  pointer-events: none !important;
+
+  opacity: 0;
+
+  background: linear-gradient(
+    102deg,
+    transparent 0%,
+    rgba(255,255,255,0) 20%,
+    rgba(255,255,255,.28) 38%,
+    rgba(255,255,255,.95) 50%,
+    rgba(255,255,255,.32) 62%,
+    rgba(255,255,255,0) 80%,
+    transparent 100%
+  );
+
+  transform: skewX(-18deg);
+
+  animation: flag-visible-shine 4.2s ease-in-out infinite !important;
+}
+
+
+/* Mobile */
 @media (max-width: 640px) {
-  .accessibility-fab {
+  .accessibility-fab-layer .accessibility-fab {
     right: 14px !important;
     bottom: 14px !important;
 
@@ -2323,15 +2413,22 @@ body.high-contrast .plain-url {
     font-size: 21px !important;
   }
 
-  .accessibility-body .toggle-row {
-    column-gap: 12px !important;
-  }
-
   .accessibility-body .access-row {
     grid-template-columns: 1fr !important;
   }
 
   .accessibility-body .text-size-controls {
     justify-self: start;
+  }
+}
+
+
+/* Accessibility preference: disable animations only when requested. */
+@media (prefers-reduced-motion: reduce) {
+  .profile-card .system-online-icon,
+  .profile-card .flag-system-wrap,
+  .profile-card .flag-system-wrap::after {
+    animation: none !important;
+    transform: none !important;
   }
 }
