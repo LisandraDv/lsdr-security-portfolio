@@ -1935,3 +1935,148 @@ body.dark-mode .experience-company-copy span {
     font-size: 9px;
   }
 }
+/* ===== PROFILE MICRO-ANIMATIONS · FLAG + ONLINE LED ===== */
+
+/* Online LED: slow, subtle pulse/blink */
+.profile-card .system-online-icon {
+  display: inline-block;
+  color: #39e66d !important;
+
+  text-shadow:
+    0 0 4px rgba(57, 230, 109, .55),
+    0 0 8px rgba(57, 230, 109, .20);
+
+  animation: online-led-pulse 2.8s ease-in-out infinite !important;
+  transform-origin: center;
+}
+
+@keyframes online-led-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+    text-shadow:
+      0 0 4px rgba(57, 230, 109, .52),
+      0 0 8px rgba(57, 230, 109, .16);
+  }
+
+  45% {
+    opacity: .72;
+    transform: scale(.94);
+    filter: brightness(.92);
+    text-shadow:
+      0 0 2px rgba(57, 230, 109, .30);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.08);
+    filter: brightness(1.18);
+    text-shadow:
+      0 0 6px rgba(57, 230, 109, .86),
+      0 0 12px rgba(57, 230, 109, .38);
+  }
+}
+
+
+/* Dominican Republic flag: visible system-style shine */
+.profile-card .flag-system-wrap {
+  position: relative !important;
+  overflow: hidden !important;
+
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.24),
+    inset 0 0 0 1px rgba(255,255,255,.34),
+    0 0 5px color-mix(in srgb, var(--accent) 16%, transparent);
+
+  animation: flag-soft-glow 4.4s ease-in-out infinite !important;
+}
+
+.profile-card .flag-system-wrap::after {
+  content: "" !important;
+  position: absolute !important;
+
+  top: -35% !important;
+  left: -45% !important;
+
+  width: 32% !important;
+  height: 175% !important;
+
+  z-index: 4 !important;
+  pointer-events: none !important;
+
+  opacity: 0;
+
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,0) 18%,
+    rgba(255,255,255,.25) 36%,
+    rgba(255,255,255,.88) 50%,
+    rgba(255,255,255,.28) 64%,
+    rgba(255,255,255,0) 82%,
+    transparent 100%
+  );
+
+  transform: translateX(-20px) skewX(-17deg);
+
+  animation: flag-shine-pass 4.6s ease-in-out infinite !important;
+}
+
+@keyframes flag-shine-pass {
+  0%,
+  58% {
+    opacity: 0;
+    transform: translateX(-24px) skewX(-17deg);
+  }
+
+  64% {
+    opacity: .25;
+  }
+
+  72% {
+    opacity: .78;
+  }
+
+  82% {
+    opacity: .30;
+  }
+
+  88%,
+  100% {
+    opacity: 0;
+    transform: translateX(48px) skewX(-17deg);
+  }
+}
+
+@keyframes flag-soft-glow {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  72% {
+    filter: brightness(1.04);
+  }
+
+  80% {
+    filter: brightness(1.12);
+  }
+
+  88% {
+    filter: brightness(1.03);
+  }
+}
+
+
+/* Respect accessibility preferences */
+@media (prefers-reduced-motion: reduce) {
+  .profile-card .system-online-icon,
+  .profile-card .flag-system-wrap,
+  .profile-card .flag-system-wrap::after {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
