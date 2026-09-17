@@ -1,6 +1,6 @@
 # LSDR Security Lab
 
-### Cloud Security · AppSec · DevSecOps · Infrastructure Security
+### Cloud Security · AppSec · DevSecOps · Infrastructure Security.
 
 Hands-on cybersecurity portfolio focused on building, testing, hardening, and validating security controls across code, cloud, infrastructure, and CI/CD workflows.
 
