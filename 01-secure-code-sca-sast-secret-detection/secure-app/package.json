@@ -1,0 +1,14 @@
+{
+  "name": "lsdr-secure-code-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remediated version of the AppSec portfolio lab.",
+  "main": "app.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "lodash": "4.17.21"
+  }
+}
