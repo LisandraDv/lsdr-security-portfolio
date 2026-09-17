@@ -7,10 +7,10 @@
   --muted: #a9b7c8;
 
   /* Customizable accent palette */
---accent: #20d9df;
---accent-2: #7857d8;
---accent-soft: #9ff4f0;
---accent-deep: #35518d;
+  --accent: #ff5f93;
+  --accent-2: #b188ff;
+  --accent-soft: #c7b3ff;
+  --accent-deep: #6f478f;
 
   /* Backward-compatible aliases used throughout the site */
   --panel-blue: var(--accent-deep);
@@ -1935,142 +1935,197 @@ body.dark-mode .experience-company-copy span {
     font-size: 9px;
   }
 }
-/* ===== PROFILE MICRO-ANIMATIONS · FLAG + ONLINE LED ===== */
 
-/* Online LED: slow, subtle pulse/blink */
+/* ===== V4.4 · PROFILE MICRO-ANIMATIONS + ACCESSIBILITY SPACING ===== */
+
+/* Online LED: visible but calm system-style breathing pulse */
 .profile-card .system-online-icon {
-  display: inline-block;
+  display: inline-block !important;
   color: #39e66d !important;
-
+  opacity: 1;
+  transform-origin: center center;
   text-shadow:
-    0 0 4px rgba(57, 230, 109, .55),
-    0 0 8px rgba(57, 230, 109, .20);
-
-  animation: online-led-pulse 2.8s ease-in-out infinite !important;
-  transform-origin: center;
+    0 0 4px rgba(57,230,109,.62),
+    0 0 9px rgba(57,230,109,.24);
+  animation: online-led-breathe 2.6s ease-in-out infinite !important;
 }
 
-@keyframes online-led-pulse {
-  0%,
-  100% {
+@keyframes online-led-breathe {
+  0%, 100% {
     opacity: 1;
     transform: scale(1);
     filter: brightness(1);
     text-shadow:
-      0 0 4px rgba(57, 230, 109, .52),
-      0 0 8px rgba(57, 230, 109, .16);
+      0 0 4px rgba(57,230,109,.62),
+      0 0 9px rgba(57,230,109,.24);
   }
 
-  45% {
-    opacity: .72;
-    transform: scale(.94);
-    filter: brightness(.92);
+  42% {
+    opacity: .58;
+    transform: scale(.86);
+    filter: brightness(.82);
     text-shadow:
-      0 0 2px rgba(57, 230, 109, .30);
+      0 0 2px rgba(57,230,109,.30);
   }
 
-  60% {
+  62% {
     opacity: 1;
-    transform: scale(1.08);
-    filter: brightness(1.18);
+    transform: scale(1.18);
+    filter: brightness(1.38);
     text-shadow:
-      0 0 6px rgba(57, 230, 109, .86),
-      0 0 12px rgba(57, 230, 109, .38);
+      0 0 7px rgba(57,230,109,.95),
+      0 0 15px rgba(57,230,109,.48);
   }
 }
 
 
-/* Dominican Republic flag: visible system-style shine */
+/* Flag: persistent subtle glow + periodic visible shine */
 .profile-card .flag-system-wrap {
   position: relative !important;
   overflow: hidden !important;
+  isolation: isolate;
+  animation: flag-visible-glow 4.8s ease-in-out infinite !important;
+}
 
+.profile-card .flag-system-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 2;
+  pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--accent) 72%, #ffffff);
+  opacity: .28;
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.24),
-    inset 0 0 0 1px rgba(255,255,255,.34),
-    0 0 5px color-mix(in srgb, var(--accent) 16%, transparent);
-
-  animation: flag-soft-glow 4.4s ease-in-out infinite !important;
+    0 0 4px color-mix(in srgb, var(--accent) 38%, transparent),
+    inset 0 0 3px rgba(255,255,255,.18);
 }
 
 .profile-card .flag-system-wrap::after {
   content: "" !important;
   position: absolute !important;
-
-  top: -35% !important;
-  left: -45% !important;
-
-  width: 32% !important;
-  height: 175% !important;
-
-  z-index: 4 !important;
+  top: -32% !important;
+  left: -70% !important;
+  width: 42% !important;
+  height: 170% !important;
+  z-index: 5 !important;
   pointer-events: none !important;
-
   opacity: 0;
-
   background: linear-gradient(
-    105deg,
+    102deg,
     transparent 0%,
-    rgba(255,255,255,0) 18%,
-    rgba(255,255,255,.25) 36%,
-    rgba(255,255,255,.88) 50%,
-    rgba(255,255,255,.28) 64%,
-    rgba(255,255,255,0) 82%,
+    rgba(255,255,255,0) 20%,
+    rgba(255,255,255,.28) 38%,
+    rgba(255,255,255,.95) 50%,
+    rgba(255,255,255,.32) 62%,
+    rgba(255,255,255,0) 80%,
     transparent 100%
   );
-
-  transform: translateX(-20px) skewX(-17deg);
-
-  animation: flag-shine-pass 4.6s ease-in-out infinite !important;
+  transform: skewX(-18deg);
+  animation: flag-visible-shine 4.2s ease-in-out infinite !important;
 }
 
-@keyframes flag-shine-pass {
-  0%,
-  58% {
+@keyframes flag-visible-shine {
+  0%, 56% {
+    left: -70%;
     opacity: 0;
-    transform: translateX(-24px) skewX(-17deg);
   }
 
   64% {
-    opacity: .25;
+    opacity: .22;
   }
 
-  72% {
-    opacity: .78;
+  74% {
+    opacity: .92;
   }
 
-  82% {
-    opacity: .30;
+  84% {
+    opacity: .34;
   }
 
-  88%,
-  100% {
+  91%, 100% {
+    left: 138%;
     opacity: 0;
-    transform: translateX(48px) skewX(-17deg);
   }
 }
 
-@keyframes flag-soft-glow {
-  0%,
-  100% {
+@keyframes flag-visible-glow {
+  0%, 100% {
     filter: brightness(1);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,.24),
+      inset 0 0 0 1px rgba(255,255,255,.32),
+      0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
   }
 
-  72% {
+  74% {
     filter: brightness(1.04);
   }
 
-  80% {
-    filter: brightness(1.12);
+  82% {
+    filter: brightness(1.18);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,.24),
+      inset 0 0 0 1px rgba(255,255,255,.42),
+      0 0 10px color-mix(in srgb, var(--accent) 48%, transparent);
   }
 
-  88% {
-    filter: brightness(1.03);
+  90% {
+    filter: brightness(1.04);
   }
 }
 
 
-/* Respect accessibility preferences */
+/* Accessibility dialog: give labels/descriptions proper breathing room */
+.accessibility-body .toggle-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 18px !important;
+  padding: 12px 0 !important;
+}
+
+.accessibility-body .toggle-row > span {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.accessibility-body .toggle-row > span > strong {
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.accessibility-body .toggle-row > span > small {
+  display: block;
+  margin: 0;
+  color: #555;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.accessibility-body .toggle-row > i {
+  justify-self: end;
+}
+
+.accessibility-body .access-row {
+  gap: 24px !important;
+}
+
+.accessibility-body .access-row > div:first-child {
+  display: grid;
+  gap: 5px;
+}
+
+.accessibility-body .access-row h3,
+.accessibility-body .access-row p {
+  margin: 0;
+}
+
+
+/* Accessibility: honor reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .profile-card .system-online-icon,
   .profile-card .flag-system-wrap,
@@ -2079,4 +2134,3 @@ body.dark-mode .experience-company-copy span {
     transform: none !important;
   }
 }
-
