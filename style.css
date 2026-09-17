@@ -2530,3 +2530,299 @@ body.high-contrast .dialog-window {
   }
 }
 
+/* ===== LIGHT THEME · AUTOMATIC CONTRAST V4.7 ===== */
+/* Keeps the active accent palette, but derives darker readable foregrounds automatically. */
+
+body.light-theme {
+  --bg: #e3eaf2;
+  --bg-2: #eef3f8;
+  --panel: #f8fbff;
+  --panel-dark: #eaf0f6;
+
+  --text: #102033;
+  --muted: #4b5f73;
+
+  --border: color-mix(in srgb, var(--accent) 32%, #65788c);
+  --border-soft: color-mix(in srgb, var(--accent-2) 30%, #65788c);
+
+  --link: color-mix(in srgb, var(--accent) 42%, #07394b);
+  --cyan: var(--link);
+  --purple: color-mix(in srgb, var(--accent-2) 48%, #24304a);
+
+  background: linear-gradient(180deg, #e7edf4 0%, #dfe7f0 100%);
+  color: var(--text);
+}
+
+
+/* Header + navigation */
+body.light-theme .portal-header {
+  background: #d8e2ed;
+  color: var(--text);
+  border-bottom-color: #9caec0;
+}
+
+body.light-theme .portal-brand strong,
+body.light-theme .portal-brand span,
+body.light-theme .header-link {
+  color: #102033;
+  text-shadow: none;
+}
+
+body.light-theme .profile-search {
+  background: #f7faff;
+  border-color: #91a4b8;
+}
+
+body.light-theme .profile-search span,
+body.light-theme .profile-search input,
+body.light-theme .profile-search input::placeholder {
+  color: #30445a;
+}
+
+body.light-theme .main-nav {
+  background: #c7d4e4;
+  border-bottom-color: #90a5ba;
+}
+
+body.light-theme .main-nav a,
+body.light-theme .nav-button {
+  color: #12243a;
+}
+
+body.light-theme .main-nav a:hover,
+body.light-theme .nav-button:hover {
+  color: var(--link);
+}
+
+
+/* Core panels */
+body.light-theme .retro-panel {
+  background: var(--panel);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+body.light-theme .panel-title {
+  color: #ffffff;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent-deep) 72%, #0d263d) 0%,
+    color-mix(in srgb, var(--accent) 54%, #0d263d) 100%
+  );
+  border-bottom-color: color-mix(in srgb, var(--accent-soft) 48%, #60758a);
+  text-shadow: 1px 1px rgba(0,0,0,.25);
+}
+
+body.light-theme .network-banner,
+body.light-theme .professional-profile,
+body.light-theme .portfolio-url-panel {
+  color: var(--text);
+}
+
+
+/* Profile card */
+body.light-theme .profile-heading h1,
+body.light-theme .profile-heading p,
+body.light-theme .profile-facts,
+body.light-theme .profile-system-meta,
+body.light-theme .profile-career-link {
+  color: var(--text);
+}
+
+body.light-theme .profile-card .profile-meta-label {
+  color: color-mix(in srgb, var(--accent-2) 40%, #24384e);
+}
+
+body.light-theme .profile-card .profile-meta-value,
+body.light-theme .profile-card .profile-meta-value strong {
+  color: #102033;
+}
+
+body.light-theme .profile-card .profile-online strong {
+  color: #08752b;
+}
+
+body.light-theme .profile-card .profile-system-separator {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #aebdca 8%,
+    #aebdca 92%,
+    transparent
+  );
+}
+
+
+/* Contact panel */
+body.light-theme .contacting-panel {
+  background: #edf3f8;
+  color: #102033;
+}
+
+body.light-theme .contacting-panel .link-button {
+  color: var(--link);
+}
+
+body.light-theme .contacting-panel .link-button:hover {
+  color: color-mix(in srgb, var(--accent-deep) 58%, #102033);
+}
+
+
+/* Skills */
+body.light-theme .skills-table {
+  color: #102033;
+}
+
+body.light-theme .skills-table th,
+body.light-theme .skills-table td {
+  border-top-color: #c0ccd7;
+}
+
+body.light-theme .skills-table th {
+  color: color-mix(in srgb, var(--accent-2) 48%, #27384d);
+}
+
+body.light-theme .skills-table td {
+  color: #17293c;
+}
+
+
+/* Certifications + profile prose */
+body.light-theme .cert-home-list > div {
+  border-bottom-color: #d2dbe4;
+}
+
+body.light-theme .cert-home-list a,
+body.light-theme .professional-profile a,
+body.light-theme .plain-url,
+body.light-theme .text-button {
+  color: var(--link);
+}
+
+body.light-theme .professional-profile h3,
+body.light-theme .prose p,
+body.light-theme .professional-profile strong {
+  color: #102033;
+}
+
+
+/* Interest / Built With chips */
+body.light-theme .interest-grid span,
+body.light-theme .built-with-row span {
+  background: #eef3f8;
+  color: #1a2d42;
+  border-color: #899aae;
+  box-shadow: inset 0 1px rgba(255,255,255,.92);
+}
+
+body.light-theme .interest-grid span:hover,
+body.light-theme .built-with-row span:hover,
+body.light-theme .interest-grid span:focus-visible,
+body.light-theme .built-with-row span:focus-visible,
+body.light-theme .interest-grid span.is-selected,
+body.light-theme .built-with-row span.is-selected {
+  color: #ffffff;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent-2) 62%, #21344d) 0%,
+    color-mix(in srgb, var(--accent-deep) 68%, #12253c) 100%
+  );
+  border-color: color-mix(in srgb, var(--accent-soft) 52%, #52677e);
+}
+
+
+/* Projects */
+body.light-theme .project-list {
+  border-top-color: #bcc9d5;
+}
+
+body.light-theme .project-row {
+  border-bottom-color: #c7d2dd;
+}
+
+body.light-theme .project-row h3 {
+  color: #102033;
+}
+
+body.light-theme .project-row p {
+  color: #31475d;
+}
+
+body.light-theme .project-row small {
+  color: color-mix(in srgb, var(--accent-2) 46%, #35475b);
+}
+
+
+/* Experience / certifications */
+body.light-theme .timeline article,
+body.light-theme .certification-list > p {
+  border-bottom-color: #c8d3dd;
+}
+
+body.light-theme .timeline h3,
+body.light-theme .certification-list > p {
+  color: #102033;
+}
+
+body.light-theme .timeline p {
+  color: #40556a;
+}
+
+body.light-theme .timeline time {
+  color: var(--link);
+}
+
+body.light-theme .certification-list span {
+  color: color-mix(in srgb, var(--accent-2) 46%, #33475e);
+}
+
+
+/* Training cards: text around CRTs must switch to dark in light mode. */
+body.light-theme .training-memory-copy h3 {
+  color: #102033;
+}
+
+body.light-theme .training-memory-copy p {
+  color: #344b61;
+}
+
+body.light-theme .training-memory-copy small {
+  color: #5b6f83;
+}
+
+body.light-theme .section-intro h2 {
+  color: #102033;
+}
+
+body.light-theme .section-intro p {
+  color: #4b5f73;
+}
+
+
+/* Buttons and generic status text */
+body.light-theme .inline-status {
+  color: #17693a;
+}
+
+body.light-theme .achievement {
+  color: #705500;
+}
+
+
+/* Keep dark retro subsystems intentionally dark, with their existing contrast. */
+body.light-theme .legacy-page,
+body.light-theme .legacy-nav,
+body.light-theme .legacy-footer,
+body.light-theme .stack-cloud,
+body.light-theme .retro-crt-screen {
+  color-scheme: dark;
+}
+
+
+/* Footer remains a dark system bar by design. */
+body.light-theme .retro-footer {
+  color: #c4d0dd;
+  background: #0b1521;
+  border-top-color: #34475a;
+}
+
