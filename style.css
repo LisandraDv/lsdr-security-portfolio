@@ -7,10 +7,10 @@
   --muted: #a9b7c8;
 
   /* Customizable accent palette */
-  --accent: #ff5f93;
-  --accent-2: #b188ff;
-  --accent-soft: #c7b3ff;
-  --accent-deep: #6f478f;
+--accent: #20d9df;
+--accent-2: #7857d8;
+--accent-soft: #9ff4f0;
+--accent-deep: #35518d;
 
   /* Backward-compatible aliases used throughout the site */
   --panel-blue: var(--accent-deep);
